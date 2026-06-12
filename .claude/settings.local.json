@@ -6,7 +6,9 @@
       "Bash(chmod +x /home/singshiv90/projects/shiva/node_modules/.bin/next)",
       "Bash(npm install)",
       "Bash(npx next dev)",
-      "Bash(npm run build 2>&1)"
+      "Bash(npm run build 2>&1)",
+      "Bash(npm install next@latest 2>&1)",
+      "Bash(npm ls next 2>&1 | head -3)"
     ]
   }
 }
