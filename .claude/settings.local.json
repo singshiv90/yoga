@@ -1,0 +1,12 @@
+{
+  "permissions": {
+    "allow": [
+      "Bash(ls -la \"\\\\\\\\\\\\\\\\wsl.localhost\\\\\\\\ubuntu-24.04\\\\\\\\home\\\\\\\\singshiv90\\\\\\\\projects\\\\\\\\shiva\" 2>/dev/null || echo \"EMPTY_OR_NEW\")",
+      "Bash(npm run dev)",
+      "Bash(chmod +x /home/singshiv90/projects/shiva/node_modules/.bin/next)",
+      "Bash(npm install)",
+      "Bash(npx next dev)",
+      "Bash(npm run build 2>&1)"
+    ]
+  }
+}

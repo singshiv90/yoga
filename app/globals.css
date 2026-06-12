@@ -1,0 +1,129 @@
+@tailwind base;
+@tailwind components;
+@tailwind utilities;
+
+@layer base {
+  :root {
+    --font-serif: "Cormorant Garamond", Georgia, serif;
+    --font-sans: "Inter", system-ui, sans-serif;
+
+    /* Light theme tokens */
+    --bg: 251 248 243; /* cream */
+    --bg-elevated: 255 255 255;
+    --fg: 26 24 22; /* ink */
+    --fg-muted: 92 84 74;
+    --border: 230 222 208;
+    --accent: 201 162 75; /* gold */
+  }
+
+  .dark {
+    --bg: 18 16 14;
+    --bg-elevated: 30 27 23;
+    --fg: 245 240 232;
+    --fg-muted: 176 167 154;
+    --border: 52 46 40;
+    --accent: 224 193 120;
+  }
+
+  * {
+    border-color: rgb(var(--border));
+  }
+
+  html {
+    scroll-behavior: smooth;
+    -webkit-font-smoothing: antialiased;
+    text-rendering: optimizeLegibility;
+  }
+
+  body {
+    background-color: rgb(var(--bg));
+    color: rgb(var(--fg));
+    font-family: var(--font-sans);
+    overflow-x: hidden;
+  }
+
+  ::selection {
+    background-color: rgb(var(--accent) / 0.3);
+  }
+
+  /* Elegant scrollbar */
+  ::-webkit-scrollbar {
+    width: 10px;
+  }
+  ::-webkit-scrollbar-track {
+    background: rgb(var(--bg));
+  }
+  ::-webkit-scrollbar-thumb {
+    background: rgb(var(--accent) / 0.5);
+    border-radius: 9999px;
+  }
+  ::-webkit-scrollbar-thumb:hover {
+    background: rgb(var(--accent) / 0.8);
+  }
+}
+
+@layer components {
+  .container-luxe {
+    @apply container max-w-7xl;
+  }
+
+  /* Glassmorphism surface used across cards & navbar */
+  .glass {
+    background: rgb(var(--bg-elevated) / 0.6);
+    backdrop-filter: blur(16px) saturate(160%);
+    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    border: 1px solid rgb(var(--border) / 0.6);
+  }
+
+  .text-muted {
+    color: rgb(var(--fg-muted));
+  }
+
+  .bg-elevated {
+    background-color: rgb(var(--bg-elevated));
+  }
+
+  /* Section label kicker */
+  .kicker {
+    @apply inline-flex items-center gap-2 text-xs font-medium uppercase tracking-luxe text-gold;
+  }
+
+  /* Gold gradient text for headlines */
+  .text-gradient-gold {
+    background: linear-gradient(120deg, #e0c178 0%, #c9a24b 45%, #a8842f 100%);
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+  }
+
+  /* Primary luxe button */
+  .btn-primary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-gold px-7 py-3.5 text-sm font-semibold text-ink shadow-glow transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2;
+  }
+
+  .btn-secondary {
+    @apply inline-flex items-center justify-center gap-2 rounded-full border border-current px-7 py-3.5 text-sm font-semibold transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold/10 focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2;
+  }
+
+  .btn-whatsapp {
+    @apply inline-flex items-center justify-center gap-2 rounded-full bg-[#25D366] px-7 py-3.5 text-sm font-semibold text-white shadow-lg transition-all duration-300 hover:-translate-y-0.5 hover:bg-[#1ebe5b] focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-[#25D366] focus-visible:ring-offset-2;
+  }
+}
+
+@layer utilities {
+  .section-pad {
+    @apply py-20 sm:py-28;
+  }
+
+  /* Honour reduced-motion preferences */
+  @media (prefers-reduced-motion: reduce) {
+    *,
+    *::before,
+    *::after {
+      animation-duration: 0.01ms !important;
+      animation-iteration-count: 1 !important;
+      transition-duration: 0.01ms !important;
+      scroll-behavior: auto !important;
+    }
+  }
+}
