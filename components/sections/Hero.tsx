@@ -2,8 +2,9 @@
 
 import Image from "next/image";
 import { motion } from "framer-motion";
-import { ArrowRight, MessageCircle, Star } from "lucide-react";
+import { ArrowRight, MessageCircle } from "lucide-react";
 import { whatsappLink } from "@/lib/config";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -37,7 +38,7 @@ export function Hero() {
             className="kicker text-gold-light"
           >
             <span className="h-px w-6 bg-gold-light" />
-            Yoga • Meditation • Inner Balance
+            Yoga &bull; Meditation &bull; Inner Balance
           </motion.span>
 
           <motion.h1
@@ -47,7 +48,7 @@ export function Hero() {
             className="mt-6 font-serif text-4xl font-semibold leading-[1.08] sm:text-6xl lg:text-7xl"
           >
             Transform Your Life Through{" "}
-            <span className="text-gradient-gold">Yoga, Meditation</span> &amp;
+            <span className="text-shimmer">Yoga, Meditation</span> &amp;
             Inner Balance
           </motion.h1>
 
@@ -68,11 +69,12 @@ export function Hero() {
             transition={{ duration: 0.9, ease, delay: 0.4 }}
             className="mt-9 flex flex-col gap-4 sm:flex-row"
           >
-            <a href="#contact" className="btn-primary">
+            <MagneticButton as="a" href="#contact" className="btn-primary">
               Book Free Consultation
               <ArrowRight className="h-4 w-4" aria-hidden />
-            </a>
-            <a
+            </MagneticButton>
+            <MagneticButton
+              as="a"
               href={whatsappLink()}
               target="_blank"
               rel="noopener noreferrer"
@@ -80,46 +82,8 @@ export function Hero() {
             >
               <MessageCircle className="h-4 w-4" aria-hidden />
               Join on WhatsApp
-            </a>
+            </MagneticButton>
           </motion.div>
-
-          {/* Mini social proof */}
-          {/* <motion.div
-            initial={{ opacity: 0 }}
-            animate={{ opacity: 1 }}
-            transition={{ duration: 1, delay: 0.6 }}
-            className="mt-10 flex items-center gap-4"
-          >
-            <div className="flex -space-x-3">
-              {[
-                "1494790108377-be9c29b29330",
-                "1438761681033-6461ffad8d80",
-                "1500648767791-00dcc994a43e",
-                "1531123897727-8f129e1688ce",
-              ].map((id) => (
-                <span
-                  key={id}
-                  className="relative h-10 w-10 overflow-hidden rounded-full ring-2 ring-white/80"
-                >
-                  <Image
-                    src={`https://images.unsplash.com/photo-${id}?auto=format&fit=crop&w=80&q=80`}
-                    alt=""
-                    fill
-                    sizes="40px"
-                    className="object-cover"
-                  />
-                </span>
-              ))}
-            </div>
-            <div>
-              <div className="flex items-center gap-0.5 text-gold-light">
-                {Array.from({ length: 5 }).map((_, i) => (
-                  <Star key={i} className="h-4 w-4 fill-current" aria-hidden />
-                ))}
-              </div>
-              <p className="text-sm text-white/80">Loved by <strong>1000+</strong> students worldwide</p>
-            </div>
-          </motion.div> */}
         </div>
       </div>
 

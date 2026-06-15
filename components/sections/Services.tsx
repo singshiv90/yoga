@@ -21,6 +21,7 @@ export function Services() {
             </>
           }
           subtitle="From dynamic flows to deep stillness — choose the path that fits your body, goals, and lifestyle."
+          ornament
         />
 
         <StaggerGroup className="mt-14 grid gap-6 sm:grid-cols-2 lg:grid-cols-3">

@@ -1,5 +1,7 @@
 import { Navbar } from "@/components/Navbar";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
+import { BackToTop } from "@/components/ui/BackToTop";
+import { SectionDivider } from "@/components/ui/SectionDivider";
 import { Hero } from "@/components/sections/Hero";
 import { TrustSection } from "@/components/sections/TrustSection";
 import { About } from "@/components/sections/About";
@@ -21,12 +23,17 @@ export default function Home() {
       <main>
         <Hero />
         <TrustSection />
+        <SectionDivider variant="curve" />
         <About />
+        <SectionDivider variant="wave" flip />
         <Services />
+        <SectionDivider variant="curve" />
         <Benefits />
+        <SectionDivider variant="wave" flip />
         <InstagramSection />
         <YouTubeSection />
         <Testimonials />
+        <SectionDivider variant="curve" />
         <Gallery />
         <FAQ />
         <WhatsAppCTA />
@@ -34,6 +41,7 @@ export default function Home() {
       </main>
       <Footer />
       <FloatingWhatsApp />
+      <BackToTop />
     </>
   );
 }

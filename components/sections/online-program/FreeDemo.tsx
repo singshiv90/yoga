@@ -13,7 +13,7 @@ export function FreeDemo() {
     >
       <div className="container-luxe">
         <Reveal>
-          <div className="glass mx-auto max-w-2xl rounded-3xl p-10 text-center sm:p-14">
+          <div className="glass flourish-corners mx-auto max-w-2xl rounded-3xl p-10 text-center sm:p-14">
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 6, ease: "easeInOut", repeat: Infinity }}

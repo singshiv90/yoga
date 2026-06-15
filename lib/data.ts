@@ -32,11 +32,13 @@ export interface Stat {
   value: string;
   label: string;
   icon: LucideIcon;
+  numericValue?: number;
+  suffix?: string;
 }
 
 export const stats: Stat[] = [
-  { value: "2+", label: "Years Experience", icon: Sparkles },
-  { value: "1000+", label: "Students Guided", icon: Users },
+  { value: "2+", label: "Years Experience", icon: Sparkles, numericValue: 2, suffix: "+" },
+  { value: "1000+", label: "Students Guided", icon: Users, numericValue: 1000, suffix: "+" },
   { value: "Online", label: "Classes Worldwide", icon: Video },
   { value: "1:1", label: "Personalized Training", icon: User },
 ];

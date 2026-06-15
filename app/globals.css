@@ -31,6 +31,7 @@
 
   html {
     scroll-behavior: smooth;
+    scroll-padding-top: 6rem;
     -webkit-font-smoothing: antialiased;
     text-rendering: optimizeLegibility;
   }
@@ -40,6 +41,22 @@
     color: rgb(var(--fg));
     font-family: var(--font-sans);
     overflow-x: hidden;
+  }
+
+  /* Grain overlay — static texture, no animation for performance */
+  body::before {
+    content: "";
+    position: fixed;
+    inset: 0;
+    z-index: 9999;
+    pointer-events: none;
+    opacity: 0.025;
+    background-image: url("data:image/svg+xml,%3Csvg viewBox='0 0 256 256' xmlns='http://www.w3.org/2000/svg'%3E%3Cfilter id='noise'%3E%3CfeTurbulence type='fractalNoise' baseFrequency='0.65' numOctaves='3' stitchTiles='stitch'/%3E%3C/filter%3E%3Crect width='100%25' height='100%25' filter='url(%23noise)'/%3E%3C/svg%3E");
+    background-repeat: repeat;
+  }
+
+  .dark body::before {
+    opacity: 0.035;
   }
 
   ::selection {
@@ -70,9 +87,10 @@
   /* Glassmorphism surface used across cards & navbar */
   .glass {
     background: rgb(var(--bg-elevated) / 0.6);
-    backdrop-filter: blur(16px) saturate(160%);
-    -webkit-backdrop-filter: blur(16px) saturate(160%);
+    backdrop-filter: blur(24px) saturate(180%);
+    -webkit-backdrop-filter: blur(24px) saturate(180%);
     border: 1px solid rgb(var(--border) / 0.6);
+    box-shadow: inset 0 1px 0 0 rgb(255 255 255 / 0.06);
   }
 
   .text-muted {
@@ -94,6 +112,7 @@
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 12px rgba(201, 162, 75, 0.25));
   }
 
   /* Teal gradient text for headlines */
@@ -102,11 +121,123 @@
     -webkit-background-clip: text;
     background-clip: text;
     -webkit-text-fill-color: transparent;
+    filter: drop-shadow(0 0 12px rgba(20, 184, 166, 0.25));
+  }
+
+  /* Shimmer text effect */
+  .text-shimmer {
+    background: linear-gradient(
+      120deg,
+      #e0c178 0%,
+      #c9a24b 25%,
+      #fff5d4 50%,
+      #c9a24b 75%,
+      #a8842f 100%
+    );
+    background-size: 200% 100%;
+    -webkit-background-clip: text;
+    background-clip: text;
+    -webkit-text-fill-color: transparent;
+    animation: shimmer 2.5s linear infinite;
+  }
+
+  /* Card glow border */
+  .card-glow-border {
+    position: relative;
+  }
+  .card-glow-border::before {
+    content: "";
+    position: absolute;
+    inset: 0;
+    border-radius: inherit;
+    padding: 1px;
+    background: linear-gradient(
+      135deg,
+      rgb(var(--accent) / 0.4),
+      transparent 40%,
+      transparent 60%,
+      rgb(var(--accent) / 0.4)
+    );
+    background-size: 200% 200%;
+    -webkit-mask:
+      linear-gradient(#fff 0 0) content-box,
+      linear-gradient(#fff 0 0);
+    -webkit-mask-composite: xor;
+    mask-composite: exclude;
+    pointer-events: none;
+    opacity: 0;
+    transition: opacity 0.4s ease;
+  }
+  .card-glow-border:hover::before {
+    opacity: 1;
+    animation: gradient-shift 6s ease infinite;
+  }
+
+  /* Flourish corners */
+  .flourish-corners {
+    position: relative;
+  }
+  .flourish-corners::before,
+  .flourish-corners::after {
+    content: "";
+    position: absolute;
+    width: 24px;
+    height: 24px;
+    border-color: rgb(var(--accent) / 0.4);
+    pointer-events: none;
+  }
+  .flourish-corners::before {
+    top: -4px;
+    left: -4px;
+    border-top: 2px solid;
+    border-left: 2px solid;
+  }
+  .flourish-corners::after {
+    bottom: -4px;
+    right: -4px;
+    border-bottom: 2px solid;
+    border-right: 2px solid;
+  }
+
+  /* Section glow spot */
+  .glow-spot-gold {
+    position: relative;
+  }
+  .glow-spot-gold::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: 50%;
+    transform: translateX(-50%);
+    width: 60%;
+    height: 1px;
+    background: radial-gradient(ellipse, rgb(var(--accent) / 0.5), transparent 70%);
+    pointer-events: none;
   }
 
   /* Primary luxe button */
   .btn-primary {
     @apply inline-flex items-center justify-center gap-2 rounded-full bg-gold px-7 py-3.5 text-sm font-semibold text-ink shadow-glow transition-all duration-300 hover:-translate-y-0.5 hover:bg-gold-light focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2;
+    position: relative;
+    overflow: hidden;
+  }
+  .btn-primary::after {
+    content: "";
+    position: absolute;
+    top: 0;
+    left: -100%;
+    width: 60%;
+    height: 100%;
+    background: linear-gradient(
+      90deg,
+      transparent,
+      rgba(255, 255, 255, 0.3),
+      transparent
+    );
+    transition: left 0.6s ease;
+  }
+  .btn-primary:hover::after {
+    left: 120%;
   }
 
   .btn-secondary {

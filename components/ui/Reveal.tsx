@@ -5,16 +5,16 @@ import type { ReactNode } from "react";
 
 /**
  * Scroll-triggered reveal wrapper built on Framer Motion.
- * Respects reduced-motion automatically via the `once` viewport + small offsets.
+ * Uses only GPU-composited properties (opacity, transform) for performance.
  */
 
 type Direction = "up" | "down" | "left" | "right" | "none";
 
 const offset: Record<Direction, { x: number; y: number }> = {
-  up: { x: 0, y: 32 },
-  down: { x: 0, y: -32 },
-  left: { x: 32, y: 0 },
-  right: { x: -32, y: 0 },
+  up: { x: 0, y: 40 },
+  down: { x: 0, y: -40 },
+  left: { x: 40, y: 0 },
+  right: { x: -40, y: 0 },
   none: { x: 0, y: 0 },
 };
 
@@ -32,11 +32,12 @@ export function Reveal({
   const { x, y } = offset[direction];
 
   const variants: Variants = {
-    hidden: { opacity: 0, x, y },
+    hidden: { opacity: 0, x, y, scale: 0.97 },
     visible: {
       opacity: 1,
       x: 0,
       y: 0,
+      scale: 1,
       transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
     },
   };
@@ -81,10 +82,11 @@ export function StaggerGroup({
 }
 
 export const staggerItem: Variants = {
-  hidden: { opacity: 0, y: 28 },
+  hidden: { opacity: 0, y: 28, scale: 0.97 },
   visible: {
     opacity: 1,
     y: 0,
+    scale: 1,
     transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
   },
 };

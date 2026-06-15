@@ -3,6 +3,7 @@
 import { motion } from "framer-motion";
 import { stats } from "@/lib/data";
 import { StaggerGroup, staggerItem } from "@/components/ui/Reveal";
+import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 
 export function TrustSection() {
   return (
@@ -20,7 +21,14 @@ export function TrustSection() {
                 <Icon className="h-6 w-6" aria-hidden />
               </span>
               <span className="font-serif text-2xl font-semibold sm:text-3xl">
-                {stat.value}
+                {stat.numericValue != null ? (
+                  <AnimatedCounter
+                    value={stat.numericValue}
+                    suffix={stat.suffix}
+                  />
+                ) : (
+                  stat.value
+                )}
               </span>
               <span className="text-sm text-muted">{stat.label}</span>
             </motion.div>

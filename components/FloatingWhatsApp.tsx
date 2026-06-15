@@ -59,7 +59,7 @@ export function FloatingWhatsApp() {
             target="_blank"
             rel="noopener noreferrer"
             aria-label="Chat with Pranava Yoga on WhatsApp"
-            className="relative grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-luxe transition-transform hover:scale-110"
+            className="relative grid h-14 w-14 place-items-center rounded-full bg-[#25D366] text-white shadow-luxe transition-transform hover:scale-110 animate-glow-pulse"
           >
             <span className="absolute inset-0 animate-pulse-ring rounded-full bg-[#25D366]" />
             <MessageCircle className="relative h-7 w-7" aria-hidden />

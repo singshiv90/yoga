@@ -19,6 +19,7 @@ export function Benefits() {
             </>
           }
           subtitle="Consistent practice rewires how you move, rest, and respond to life. Here's what students experience."
+          ornament
         />
 
         <div className="mt-14 grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
@@ -56,7 +57,7 @@ export function Benefits() {
                   key={benefit.title}
                   variants={staggerItem}
                   whileHover={{ y: -4 }}
-                  className="group flex items-start gap-4 rounded-2xl border bg-elevated p-5 transition-shadow hover:shadow-luxe"
+                  className="group flex items-start gap-4 rounded-2xl border bg-elevated p-5 transition-shadow hover:shadow-luxe card-glow-border"
                 >
                   <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-gold/12 text-gold transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
                     <Icon className="h-6 w-6" aria-hidden />

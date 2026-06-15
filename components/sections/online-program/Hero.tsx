@@ -4,6 +4,7 @@ import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, MessageCircle } from "lucide-react";
 import { onlineProgramWhatsappLink } from "@/lib/config";
+import { MagneticButton } from "@/components/ui/MagneticButton";
 
 const ease = [0.22, 1, 0.36, 1] as const;
 
@@ -66,11 +67,12 @@ export function Hero() {
             transition={{ duration: 0.9, ease, delay: 0.4 }}
             className="mt-9 flex flex-col gap-4 sm:flex-row"
           >
-            <a href="#op-free-demo" className="btn-teal">
+            <MagneticButton as="a" href="#op-free-demo" className="btn-teal">
               Book Free Demo
               <ArrowRight className="h-4 w-4" aria-hidden />
-            </a>
-            <a
+            </MagneticButton>
+            <MagneticButton
+              as="a"
               href={onlineProgramWhatsappLink()}
               target="_blank"
               rel="noopener noreferrer"
@@ -78,7 +80,7 @@ export function Hero() {
             >
               <MessageCircle className="h-4 w-4" aria-hidden />
               WhatsApp Enquiry
-            </a>
+            </MagneticButton>
           </motion.div>
         </div>
       </div>

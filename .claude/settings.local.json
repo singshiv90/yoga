@@ -8,7 +8,8 @@
       "Bash(npx next dev)",
       "Bash(npm run build 2>&1)",
       "Bash(npm install next@latest 2>&1)",
-      "Bash(npm ls next 2>&1 | head -3)"
+      "Bash(npm ls next 2>&1 | head -3)",
+      "Bash(npx next lint 2>&1 | head -20)"
     ]
   }
 }

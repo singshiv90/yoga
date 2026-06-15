@@ -3,6 +3,8 @@ import { site } from "@/lib/config";
 import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/sections/Footer";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
+import { BackToTop } from "@/components/ui/BackToTop";
+import { SectionDivider } from "@/components/ui/SectionDivider";
 import { Hero } from "@/components/sections/online-program/Hero";
 import { WhyJoin } from "@/components/sections/online-program/WhyJoin";
 import { FreeDemo } from "@/components/sections/online-program/FreeDemo";
@@ -54,16 +56,21 @@ export default function OnlineProgramPage() {
       <Navbar />
       <main>
         <Hero />
+        <SectionDivider variant="curve" />
         <WhyJoin />
+        <SectionDivider variant="wave" flip />
         <FreeDemo />
+        <SectionDivider variant="curve" />
         <ClassSchedule />
         <Pricing />
+        <SectionDivider variant="wave" flip />
         <EnrollmentProcess />
         <ProgramTrust />
         <FinalCTA />
       </main>
       <Footer />
       <FloatingWhatsApp />
+      <BackToTop />
     </>
   );
 }

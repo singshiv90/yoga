@@ -21,7 +21,7 @@ export function WhatsAppCTA() {
         <div className="absolute inset-0 bg-gradient-to-t from-ink/90 to-ink/40" />
       </div>
 
-      <div className="container-luxe relative text-center text-white">
+      <div className="container-luxe relative text-center text-white flourish-corners">
         <motion.span
           initial={{ opacity: 0, y: 16 }}
           whileInView={{ opacity: 1, y: 0 }}

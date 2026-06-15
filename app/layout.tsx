@@ -2,6 +2,8 @@ import type { Metadata, Viewport } from "next";
 import { Cormorant_Garamond, Inter } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
+import { ScrollProgress } from "@/components/ui/ScrollProgress";
+import { AmbientOrbs } from "@/components/ui/AmbientOrbs";
 import { site, social } from "@/lib/config";
 
 const serif = Cormorant_Garamond({
@@ -118,6 +120,8 @@ export default function RootLayout({
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />
+        <ScrollProgress />
+        <AmbientOrbs />
         <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
