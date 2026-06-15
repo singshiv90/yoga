@@ -3,7 +3,7 @@
 import { useEffect, useState } from "react";
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import { AnimatePresence, motion, useMotionValueEvent, useScroll } from "framer-motion";
+import { motion, useMotionValueEvent, useScroll } from "framer-motion";
 import Image from "next/image";
 import { Menu, X } from "lucide-react";
 import { cn } from "@/lib/utils";
@@ -149,43 +149,43 @@ export function Navbar() {
         </div>
       </nav>
 
-      {/* Mobile menu */}
-      <AnimatePresence>
-        {open && (
-          <motion.div
-            initial={{ opacity: 0, y: -12 }}
-            animate={{ opacity: 1, y: 0 }}
-            exit={{ opacity: 0, y: -12 }}
-            transition={{ duration: 0.25 }}
-            className="glass border-t lg:hidden"
-          >
-            <ul className="container-luxe flex flex-col gap-1 py-4">
-              {navLinks.map((link) => (
-                <li key={link.href}>
-                  <Link
-                    href={resolveHref(link.href, pathname)}
-                    onClick={() => setOpen(false)}
-                    className="block rounded-xl px-4 py-3 text-base font-medium text-[rgb(var(--fg))] transition-colors hover:bg-gold/10"
-                  >
-                    {link.label}
-                  </Link>
-                </li>
-              ))}
-              <li className="px-4 pt-2">
-                <a
-                  href={whatsappLink()}
-                  target="_blank"
-                  rel="noopener noreferrer"
-                  className="btn-primary w-full"
-                  onClick={() => setOpen(false)}
-                >
-                  Join on WhatsApp
-                </a>
-              </li>
-            </ul>
-          </motion.div>
+      {/* Mobile menu — CSS-only animation to avoid iOS Safari compositing blink */}
+      <div
+        className={cn(
+          "glass overflow-hidden border-t transition-[grid-template-rows,opacity] duration-300 ease-out lg:hidden",
+          open
+            ? "grid grid-rows-[1fr] opacity-100"
+            : "grid grid-rows-[0fr] opacity-0 pointer-events-none",
         )}
-      </AnimatePresence>
+        aria-hidden={!open}
+      >
+        <div className="overflow-hidden">
+          <ul className="container-luxe flex flex-col gap-1 py-4">
+            {navLinks.map((link) => (
+              <li key={link.href}>
+                <Link
+                  href={resolveHref(link.href, pathname)}
+                  onClick={() => setOpen(false)}
+                  className="block rounded-xl px-4 py-3 text-base font-medium text-[rgb(var(--fg))] transition-colors hover:bg-gold/10"
+                >
+                  {link.label}
+                </Link>
+              </li>
+            ))}
+            <li className="px-4 pt-2">
+              <a
+                href={whatsappLink()}
+                target="_blank"
+                rel="noopener noreferrer"
+                className="btn-primary w-full"
+                onClick={() => setOpen(false)}
+              >
+                Join on WhatsApp
+              </a>
+            </li>
+          </ul>
+        </div>
+      </div>
     </header>
   );
 }
