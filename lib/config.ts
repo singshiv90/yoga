@@ -70,6 +70,7 @@ export const navLinks = [
   { label: "Benefits", href: "#benefits" },
   { label: "Community", href: "#instagram" },
   { label: "Testimonials", href: "#testimonials" },
+  { label: "Blog", href: "#blog" },
   { label: "FAQ", href: "#faq" },
   { label: "Online Program", href: "/online-program" },
   { label: "Contact", href: "#contact" },

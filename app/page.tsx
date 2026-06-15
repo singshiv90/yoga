@@ -11,6 +11,7 @@ import { InstagramSection } from "@/components/sections/InstagramSection";
 import { YouTubeSection } from "@/components/sections/YouTubeSection";
 import { Testimonials } from "@/components/sections/Testimonials";
 import { Gallery } from "@/components/sections/Gallery";
+import { BlogSection } from "@/components/sections/BlogSection";
 import { FAQ } from "@/components/sections/FAQ";
 import { WhatsAppCTA } from "@/components/sections/WhatsAppCTA";
 import { Contact } from "@/components/sections/Contact";
@@ -35,6 +36,8 @@ export default function Home() {
         <Testimonials />
         <SectionDivider variant="curve" />
         <Gallery />
+        <SectionDivider variant="wave" flip />
+        <BlogSection />
         <FAQ />
         <WhatsAppCTA />
         <Contact />
