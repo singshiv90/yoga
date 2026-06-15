@@ -350,7 +350,7 @@ export interface GalleryItem {
 export const galleryItems: GalleryItem[] = [
   {
     image:
-      "https://images.unsplash.com/photo-1552058544-f2b08422138a?auto=format&fit=crop&w=800&q=80",
+      "/IMG_2777.jpg?auto=format&fit=crop&w=800&q=80",
     category: "Yoga Practice",
     alt: "Warrior pose at golden hour",
     span: "tall",
@@ -385,7 +385,7 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     image:
-      "https://images.unsplash.com/photo-1469474968028-56623f02e42e?auto=format&fit=crop&w=800&q=80",
+      "/AC95F3AB-AE7D-4DB1-92FF-8F47E9209232.png?auto=format&fit=crop&w=800&q=80",
     category: "Nature & Mindfulness",
     alt: "Golden sunlight through forest",
     span: "tall",

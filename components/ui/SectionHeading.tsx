@@ -7,13 +7,18 @@ export function SectionHeading({
   subtitle,
   align = "center",
   className,
+  variant = "gold",
 }: {
   kicker?: string;
   title: React.ReactNode;
   subtitle?: string;
   align?: "center" | "left";
   className?: string;
+  variant?: "gold" | "teal";
 }) {
+  const kickerCls = variant === "teal" ? "kicker-teal" : "kicker";
+  const lineCls = variant === "teal" ? "bg-teal" : "bg-gold";
+
   return (
     <Reveal
       className={cn(
@@ -23,8 +28,8 @@ export function SectionHeading({
       )}
     >
       {kicker && (
-        <span className="kicker mb-4">
-          <span className="h-px w-6 bg-gold" />
+        <span className={cn(kickerCls, "mb-4")}>
+          <span className={cn("h-px w-6", lineCls)} />
           {kicker}
         </span>
       )}

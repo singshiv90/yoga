@@ -45,6 +45,21 @@ const config: Config = {
           light: "#e0c178",
           dark: "#a8842f",
         },
+        teal: {
+          50: "#f0fdfa",
+          100: "#ccfbf1",
+          200: "#99f6e4",
+          300: "#5eead4",
+          400: "#2dd4bf",
+          500: "#14b8a6",
+          600: "#0d9488",
+          700: "#0f766e",
+          800: "#115e59",
+          900: "#134e4a",
+          DEFAULT: "#14b8a6",
+          light: "#2dd4bf",
+          dark: "#0f766e",
+        },
         ink: {
           DEFAULT: "#1a1816",
           soft: "#26221e",
@@ -62,10 +77,14 @@ const config: Config = {
       boxShadow: {
         luxe: "0 24px 60px -20px rgba(40, 32, 20, 0.35)",
         glow: "0 0 0 1px rgba(201,162,75,0.25), 0 20px 50px -20px rgba(201,162,75,0.45)",
+        "glow-teal":
+          "0 0 0 1px rgba(20,184,166,0.25), 0 20px 50px -20px rgba(20,184,166,0.45)",
       },
       backgroundImage: {
         "radial-fade":
           "radial-gradient(ellipse at top, rgba(201,162,75,0.10), transparent 60%)",
+        "radial-fade-teal":
+          "radial-gradient(ellipse at top, rgba(20,184,166,0.10), transparent 60%)",
       },
       keyframes: {
         "fade-up": {

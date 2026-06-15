@@ -1,13 +1,24 @@
 "use client";
 
 import { useEffect, useState } from "react";
+import { usePathname } from "next/navigation";
+import Link from "next/link";
 import { AnimatePresence, motion } from "framer-motion";
 import { Menu, X, Flower2 } from "lucide-react";
 import { cn } from "@/lib/utils";
 import { navLinks, site, whatsappLink } from "@/lib/config";
 import { ThemeToggle } from "./ui/ThemeToggle";
 
+/** Prefix hash links with "/" when not on the home page so they navigate home first. */
+function resolveHref(href: string, pathname: string) {
+  if (href.startsWith("#")) {
+    return pathname === "/" ? href : `/${href}`;
+  }
+  return href;
+}
+
 export function Navbar() {
+  const pathname = usePathname();
   const [scrolled, setScrolled] = useState(false);
   const [open, setOpen] = useState(false);
 
@@ -34,8 +45,8 @@ export function Navbar() {
       )}
     >
       <nav className="container-luxe flex h-20 items-center justify-between py-4">
-        <a
-          href="#hero"
+        <Link
+          href={pathname === "/" ? "#hero" : "/"}
           className="flex items-center gap-2.5 font-serif text-xl font-semibold"
           aria-label={`${site.name} home`}
         >
@@ -43,18 +54,18 @@ export function Navbar() {
             <Flower2 className="h-5 w-5" aria-hidden />
           </span>
           {site.name}
-        </a>
+        </Link>
 
         {/* Desktop links */}
         <ul className="hidden items-center gap-8 lg:flex">
           {navLinks.map((link) => (
             <li key={link.href}>
-              <a
-                href={link.href}
+              <Link
+                href={resolveHref(link.href, pathname)}
                 className="text-sm font-medium text-muted transition-colors hover:text-gold"
               >
                 {link.label}
-              </a>
+              </Link>
             </li>
           ))}
         </ul>
@@ -94,13 +105,13 @@ export function Navbar() {
             <ul className="container-luxe flex flex-col gap-1 py-4">
               {navLinks.map((link) => (
                 <li key={link.href}>
-                  <a
-                    href={link.href}
+                  <Link
+                    href={resolveHref(link.href, pathname)}
                     onClick={() => setOpen(false)}
                     className="block rounded-xl px-4 py-3 text-base font-medium transition-colors hover:bg-gold/10"
                   >
                     {link.label}
-                  </a>
+                  </Link>
                 </li>
               ))}
               <li className="px-4 pt-2">
