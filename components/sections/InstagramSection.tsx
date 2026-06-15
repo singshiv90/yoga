@@ -1,11 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { Heart, Instagram, MessageCircle } from "lucide-react";
 import { instagramPosts } from "@/lib/data";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { StaggerGroup, staggerItem } from "@/components/ui/Reveal";
+import { StaggerGroup } from "@/components/ui/Reveal";
 import { social } from "@/lib/config";
 
 export function InstagramSection() {
@@ -25,12 +24,11 @@ export function InstagramSection() {
 
         <StaggerGroup className="mt-12 grid grid-cols-2 gap-3 sm:grid-cols-3 sm:gap-4 lg:grid-cols-6">
           {instagramPosts.map((post, i) => (
-            <motion.a
+            <a
               key={post.image}
               href={social.instagram}
               target="_blank"
               rel="noopener noreferrer"
-              variants={staggerItem}
               className="group relative aspect-square overflow-hidden rounded-2xl"
               aria-label={`View on Instagram: ${post.alt}`}
             >
@@ -52,7 +50,7 @@ export function InstagramSection() {
                   {8 + i * 3}
                 </span>
               </div>
-            </motion.a>
+            </a>
           ))}
         </StaggerGroup>
 

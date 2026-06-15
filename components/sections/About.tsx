@@ -1,7 +1,6 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { BadgeCheck, Sparkles } from "lucide-react";
 import { instructor } from "@/lib/data";
 import { Reveal } from "@/components/ui/Reveal";
@@ -25,11 +24,9 @@ export function About() {
           </div>
 
           {/* Floating glass credential card */}
-          <motion.div
-            initial={{ opacity: 0, y: 20 }}
-            whileInView={{ opacity: 1, y: 0 }}
-            viewport={{ once: true }}
-            transition={{ delay: 0.3 }}
+          <Reveal
+            direction="up"
+            delay={0.3}
             className="glass absolute -bottom-6 -left-4 rounded-2xl p-5 shadow-luxe sm:-left-8"
           >
             <div className="flex items-center gap-3">
@@ -43,7 +40,7 @@ export function About() {
                 <p className="text-sm text-muted">Of guiding transformations</p>
               </div>
             </div>
-          </motion.div>
+          </Reveal>
         </Reveal>
 
         {/* Text */}

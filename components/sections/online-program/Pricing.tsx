@@ -1,11 +1,10 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { CheckCircle, ArrowRight } from "lucide-react";
 import { pricingPlans } from "@/lib/online-program-data";
 import { onlineProgramWhatsappLink } from "@/lib/config";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { StaggerGroup, staggerItem } from "@/components/ui/Reveal";
+import { StaggerGroup } from "@/components/ui/Reveal";
 import { cn } from "@/lib/utils";
 
 export function Pricing() {
@@ -26,9 +25,8 @@ export function Pricing() {
 
         <StaggerGroup className="mx-auto mt-14 grid max-w-3xl gap-6 sm:grid-cols-2">
           {pricingPlans.map((plan) => (
-            <motion.div
+            <div
               key={plan.name}
-              variants={staggerItem}
               className={cn(
                 "relative flex flex-col rounded-3xl border p-8",
                 plan.popular
@@ -85,7 +83,7 @@ export function Pricing() {
                 Get Started
                 <ArrowRight className="h-4 w-4" aria-hidden />
               </a>
-            </motion.div>
+            </div>
           ))}
         </StaggerGroup>
       </div>

@@ -1,10 +1,9 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { Clock, Video } from "lucide-react";
 import { classSchedule } from "@/lib/online-program-data";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { StaggerGroup, staggerItem } from "@/components/ui/Reveal";
+import { StaggerGroup } from "@/components/ui/Reveal";
 
 export function ClassSchedule() {
   return (
@@ -24,9 +23,8 @@ export function ClassSchedule() {
 
         <StaggerGroup className="mx-auto mt-14 grid max-w-4xl gap-5 sm:grid-cols-2">
           {classSchedule.slots.map((slot) => (
-            <motion.div
+            <div
               key={slot.time}
-              variants={staggerItem}
               className="glass flex items-center gap-4 rounded-2xl p-6"
             >
               <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-teal/12 text-teal">
@@ -36,7 +34,7 @@ export function ClassSchedule() {
                 <p className="text-lg font-semibold">{slot.time}</p>
                 <p className="text-sm text-muted">{slot.label}</p>
               </div>
-            </motion.div>
+            </div>
           ))}
         </StaggerGroup>
 

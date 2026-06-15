@@ -1,11 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { Play, Youtube } from "lucide-react";
 import { videos } from "@/lib/data";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { StaggerGroup, staggerItem } from "@/components/ui/Reveal";
+import { StaggerGroup } from "@/components/ui/Reveal";
 import { social } from "@/lib/config";
 
 export function YouTubeSection() {
@@ -25,14 +24,12 @@ export function YouTubeSection() {
 
         <StaggerGroup className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
           {videos.map((video) => (
-            <motion.a
+            <a
               key={video.title}
               href={video.url}
               target="_blank"
               rel="noopener noreferrer"
-              variants={staggerItem}
-              whileHover={{ y: -6 }}
-              className="group overflow-hidden rounded-3xl border bg-elevated shadow-sm transition-shadow hover:shadow-luxe"
+              className="group overflow-hidden rounded-3xl border bg-elevated shadow-sm transition-all hover:-translate-y-1.5 hover:shadow-luxe"
             >
               <div className="relative aspect-video overflow-hidden">
                 <Image
@@ -61,7 +58,7 @@ export function YouTubeSection() {
                   {video.title}
                 </h3>
               </div>
-            </motion.a>
+            </a>
           ))}
         </StaggerGroup>
 

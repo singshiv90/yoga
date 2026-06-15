@@ -1,9 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { CalendarHeart, MessageCircle } from "lucide-react";
 import { whatsappLink } from "@/lib/config";
+import { Reveal } from "@/components/ui/Reveal";
 
 export function WhatsAppCTA() {
   return (
@@ -23,58 +23,43 @@ export function WhatsAppCTA() {
       </div>
 
       <div className="container-luxe relative text-center text-white flourish-corners">
-        <motion.span
-          initial={{ opacity: 0, y: 16 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          className="kicker justify-center text-gold-light"
-        >
-          <span className="h-px w-6 bg-gold-light" />
-          Your Journey Begins Now
-        </motion.span>
+        <Reveal direction="up">
+          <span className="kicker justify-center text-gold-light">
+            <span className="h-px w-6 bg-gold-light" />
+            Your Journey Begins Now
+          </span>
+        </Reveal>
 
-        <motion.h2
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.1 }}
-          className="mx-auto mt-5 max-w-3xl font-serif text-4xl font-semibold leading-tight sm:text-6xl"
-        >
-          Begin Your Yoga Journey Today
-        </motion.h2>
+        <Reveal direction="up" delay={0.1}>
+          <h2 className="mx-auto mt-5 max-w-3xl font-serif text-4xl font-semibold leading-tight sm:text-6xl">
+            Begin Your Yoga Journey Today
+          </h2>
+        </Reveal>
 
-        <motion.p
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.2 }}
-          className="mx-auto mt-5 max-w-xl text-lg text-white/85"
-        >
-          Take the first step toward strength, calm, and clarity. Your free
-          consultation is one message away.
-        </motion.p>
+        <Reveal direction="up" delay={0.2}>
+          <p className="mx-auto mt-5 max-w-xl text-lg text-white/85">
+            Take the first step toward strength, calm, and clarity. Your free
+            consultation is one message away.
+          </p>
+        </Reveal>
 
-        <motion.div
-          initial={{ opacity: 0, y: 24 }}
-          whileInView={{ opacity: 1, y: 0 }}
-          viewport={{ once: true }}
-          transition={{ delay: 0.3 }}
-          className="mt-10 flex flex-col justify-center gap-4 sm:flex-row"
-        >
-          <a
-            href={whatsappLink()}
-            target="_blank"
-            rel="noopener noreferrer"
-            className="btn-whatsapp"
-          >
-            <MessageCircle className="h-5 w-5" aria-hidden />
-            Chat on WhatsApp
-          </a>
-          <a href="#contact" className="btn-primary">
-            <CalendarHeart className="h-5 w-5" aria-hidden />
-            Book Your First Session
-          </a>
-        </motion.div>
+        <Reveal direction="up" delay={0.3}>
+          <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
+            <a
+              href={whatsappLink()}
+              target="_blank"
+              rel="noopener noreferrer"
+              className="btn-whatsapp"
+            >
+              <MessageCircle className="h-5 w-5" aria-hidden />
+              Chat on WhatsApp
+            </a>
+            <a href="#contact" className="btn-primary">
+              <CalendarHeart className="h-5 w-5" aria-hidden />
+              Book Your First Session
+            </a>
+          </div>
+        </Reveal>
       </div>
     </section>
   );

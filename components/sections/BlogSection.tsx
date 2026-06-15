@@ -2,11 +2,10 @@
 
 import Image from "next/image";
 import Link from "next/link";
-import { motion } from "framer-motion";
 import { ArrowRight, Calendar, Clock } from "lucide-react";
 import { blogPosts } from "@/lib/blog-data";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { StaggerGroup, staggerItem } from "@/components/ui/Reveal";
+import { StaggerGroup } from "@/components/ui/Reveal";
 
 export function BlogSection() {
   return (
@@ -27,11 +26,9 @@ export function BlogSection() {
           {blogPosts.map((post) => {
             const Icon = post.icon;
             return (
-              <motion.article
+              <article
                 key={post.slug}
-                variants={staggerItem}
-                whileHover={{ y: -6 }}
-                className="group overflow-hidden rounded-3xl border bg-elevated shadow-sm transition-shadow hover:shadow-luxe"
+                className="group overflow-hidden rounded-3xl border bg-elevated shadow-sm transition-all hover:-translate-y-1.5 hover:shadow-luxe"
               >
                 <Link href={`/blog/${post.slug}`} className="block">
                   <div className="relative aspect-video overflow-hidden">
@@ -76,7 +73,7 @@ export function BlogSection() {
                     </div>
                   </div>
                 </Link>
-              </motion.article>
+              </article>
             );
           })}
         </StaggerGroup>

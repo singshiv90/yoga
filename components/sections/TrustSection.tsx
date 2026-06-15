@@ -1,8 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { stats } from "@/lib/data";
-import { StaggerGroup, staggerItem } from "@/components/ui/Reveal";
+import { StaggerGroup } from "@/components/ui/Reveal";
 import { AnimatedCounter } from "@/components/ui/AnimatedCounter";
 
 export function TrustSection() {
@@ -12,9 +11,8 @@ export function TrustSection() {
         {stats.map((stat) => {
           const Icon = stat.icon;
           return (
-            <motion.div
+            <div
               key={stat.label}
-              variants={staggerItem}
               className="flex flex-col items-center gap-2 text-center"
             >
               <span className="grid h-12 w-12 place-items-center rounded-full bg-gold/12 text-gold">
@@ -31,7 +29,7 @@ export function TrustSection() {
                 )}
               </span>
               <span className="text-sm text-muted">{stat.label}</span>
-            </motion.div>
+            </div>
           );
         })}
       </StaggerGroup>

@@ -1,8 +1,7 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { programTrustPoints } from "@/lib/online-program-data";
-import { StaggerGroup, staggerItem } from "@/components/ui/Reveal";
+import { StaggerGroup } from "@/components/ui/Reveal";
 
 export function ProgramTrust() {
   return (
@@ -11,9 +10,8 @@ export function ProgramTrust() {
         {programTrustPoints.map((point) => {
           const Icon = point.icon;
           return (
-            <motion.div
+            <div
               key={point.title}
-              variants={staggerItem}
               className="flex flex-col items-center gap-2 text-center"
             >
               <span className="grid h-12 w-12 place-items-center rounded-full bg-teal/12 text-teal">
@@ -21,7 +19,7 @@ export function ProgramTrust() {
               </span>
               <span className="font-semibold">{point.title}</span>
               <span className="text-xs text-muted">{point.description}</span>
-            </motion.div>
+            </div>
           );
         })}
       </StaggerGroup>

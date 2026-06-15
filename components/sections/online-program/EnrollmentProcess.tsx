@@ -1,9 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { enrollmentSteps } from "@/lib/online-program-data";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { StaggerGroup, staggerItem } from "@/components/ui/Reveal";
+import { StaggerGroup } from "@/components/ui/Reveal";
 
 export function EnrollmentProcess() {
   return (
@@ -27,9 +26,8 @@ export function EnrollmentProcess() {
             const isLast = idx === enrollmentSteps.length - 1;
 
             return (
-              <motion.div
+              <div
                 key={step.step}
-                variants={staggerItem}
                 className="relative flex gap-6"
               >
                 {/* Vertical line + numbered circle */}
@@ -52,7 +50,7 @@ export function EnrollmentProcess() {
                     {step.description}
                   </p>
                 </div>
-              </motion.div>
+              </div>
             );
           })}
         </StaggerGroup>

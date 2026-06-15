@@ -1,10 +1,9 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { benefits } from "@/lib/data";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { StaggerGroup, staggerItem } from "@/components/ui/Reveal";
+import { Reveal, StaggerGroup } from "@/components/ui/Reveal";
 
 export function Benefits() {
   return (
@@ -24,11 +23,8 @@ export function Benefits() {
 
         <div className="mt-14 grid items-center gap-10 lg:grid-cols-2 lg:gap-16">
           {/* Image */}
-          <motion.div
-            initial={{ opacity: 0, scale: 0.96 }}
-            whileInView={{ opacity: 1, scale: 1 }}
-            viewport={{ once: true }}
-            transition={{ duration: 0.8 }}
+          <Reveal
+            direction="none"
             className="relative order-last aspect-square overflow-hidden rounded-[2rem] shadow-luxe lg:order-first"
           >
             <Image
@@ -47,18 +43,16 @@ export function Benefits() {
                 The everyday promise of a steady practice.
               </p>
             </div>
-          </motion.div>
+          </Reveal>
 
           {/* Benefit grid */}
           <StaggerGroup className="grid gap-4 sm:grid-cols-2">
             {benefits.map((benefit) => {
               const Icon = benefit.icon;
               return (
-                <motion.div
+                <div
                   key={benefit.title}
-                  variants={staggerItem}
-                  whileHover={{ y: -4 }}
-                  className="group flex items-start gap-4 rounded-2xl border bg-elevated p-5 transition-shadow hover:shadow-luxe card-glow-border"
+                  className="group flex items-start gap-4 rounded-2xl border bg-elevated p-5 transition-all hover:-translate-y-1 hover:shadow-luxe card-glow-border"
                 >
                   <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-gold/12 text-gold transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
                     <Icon className="h-6 w-6" aria-hidden />
@@ -69,7 +63,7 @@ export function Benefits() {
                       {benefit.description}
                     </p>
                   </div>
-                </motion.div>
+                </div>
               );
             })}
           </StaggerGroup>

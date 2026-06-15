@@ -1,23 +1,24 @@
 "use client";
 
-import { motion, type Variants } from "framer-motion";
-import type { ReactNode } from "react";
-
-/**
- * Scroll-triggered reveal wrapper built on Framer Motion.
- * Uses only GPU-composited properties (opacity, transform) for performance.
- */
+import { useRef, useEffect, type ReactNode } from "react";
+import { cn } from "@/lib/utils";
 
 type Direction = "up" | "down" | "left" | "right" | "none";
 
-const offset: Record<Direction, { x: number; y: number }> = {
-  up: { x: 0, y: 40 },
-  down: { x: 0, y: -40 },
-  left: { x: 40, y: 0 },
-  right: { x: -40, y: 0 },
-  none: { x: 0, y: 0 },
+const translateMap: Record<Direction, string> = {
+  up: "translateY(40px)",
+  down: "translateY(-40px)",
+  left: "translateX(40px)",
+  right: "translateX(-40px)",
+  none: "none",
 };
 
+/**
+ * Scroll-triggered reveal wrapper using pure CSS transitions + IntersectionObserver.
+ *
+ * Renders with inline `opacity: 0` from the very first paint (SSR included),
+ * so there is never a visible-to-invisible flash on iOS Safari during hydration.
+ */
 export function Reveal({
   children,
   direction = "up",
@@ -29,33 +30,52 @@ export function Reveal({
   delay?: number;
   className?: string;
 }) {
-  const { x, y } = offset[direction];
+  const ref = useRef<HTMLDivElement>(null);
 
-  const variants: Variants = {
-    hidden: { opacity: 0, x, y, scale: 0.97 },
-    visible: {
-      opacity: 1,
-      x: 0,
-      y: 0,
-      scale: 1,
-      transition: { duration: 0.7, delay, ease: [0.22, 1, 0.36, 1] },
-    },
-  };
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          el.style.opacity = "1";
+          el.style.transform = "none";
+          observer.unobserve(el);
+        }
+      },
+      { rootMargin: "-80px" },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, []);
+
+  const translate = translateMap[direction];
+  const initialTransform =
+    translate === "none" ? "scale(0.97)" : `${translate} scale(0.97)`;
 
   return (
-    <motion.div
+    <div
+      ref={ref}
       className={className}
-      variants={variants}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-80px" }}
+      style={{
+        opacity: 0,
+        transform: initialTransform,
+        transition: `opacity 0.7s cubic-bezier(0.22,1,0.36,1) ${delay}s, transform 0.7s cubic-bezier(0.22,1,0.36,1) ${delay}s`,
+      }}
     >
       {children}
-    </motion.div>
+    </div>
   );
 }
 
-/** Stagger container — children fade up in sequence. */
+/**
+ * Stagger container — children fade up in sequence.
+ *
+ * Uses CSS initial state (.stagger-children > *) for SSR-safe hidden state,
+ * then IntersectionObserver sets inline styles with stagger delays on reveal.
+ */
 export function StaggerGroup({
   children,
   className,
@@ -65,28 +85,38 @@ export function StaggerGroup({
   className?: string;
   stagger?: number;
 }) {
+  const ref = useRef<HTMLDivElement>(null);
+
+  useEffect(() => {
+    const el = ref.current;
+    if (!el) return;
+
+    const observer = new IntersectionObserver(
+      ([entry]) => {
+        if (entry.isIntersecting) {
+          const kids = el.children;
+          for (let i = 0; i < kids.length; i++) {
+            const child = kids[i] as HTMLElement;
+            child.style.transitionDelay = `${i * stagger}s`;
+            child.style.opacity = "1";
+            child.style.transform = "none";
+          }
+          observer.unobserve(el);
+        }
+      },
+      { rootMargin: "-60px" },
+    );
+
+    observer.observe(el);
+    return () => observer.disconnect();
+  }, [stagger]);
+
   return (
-    <motion.div
-      className={className}
-      initial="hidden"
-      whileInView="visible"
-      viewport={{ once: true, margin: "-60px" }}
-      variants={{
-        hidden: {},
-        visible: { transition: { staggerChildren: stagger } },
-      }}
-    >
+    <div ref={ref} className={cn("stagger-children", className)}>
       {children}
-    </motion.div>
+    </div>
   );
 }
 
-export const staggerItem: Variants = {
-  hidden: { opacity: 0, y: 28, scale: 0.97 },
-  visible: {
-    opacity: 1,
-    y: 0,
-    scale: 1,
-    transition: { duration: 0.6, ease: [0.22, 1, 0.36, 1] },
-  },
-};
+/** @deprecated No longer needed — kept for import compatibility. */
+export const staggerItem = {};

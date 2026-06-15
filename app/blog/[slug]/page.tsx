@@ -14,6 +14,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/sections/Footer";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { BackToTop } from "@/components/ui/BackToTop";
+import { BlogSidebar } from "@/components/blog/BlogSidebar";
 
 // ---------------------------------------------------------------------------
 // Static export — pre-render all blog slugs at build time
@@ -136,71 +137,81 @@ export default async function BlogPostPage({
           </div>
         </div>
 
-        {/* Article content */}
-        <article className="section-pad">
-          <div className="mx-auto max-w-3xl">
-            <h1 className="font-serif text-3xl font-semibold leading-tight sm:text-4xl lg:text-5xl">
-              {post.title}
-            </h1>
+        {/* Article + Sidebar grid */}
+        <div className="section-pad">
+          <div className="container-luxe grid lg:grid-cols-[1fr_300px] lg:gap-10">
+            {/* Article content */}
+            <article className="max-w-3xl">
+              <h1 className="font-serif text-3xl font-semibold leading-tight sm:text-4xl lg:text-5xl">
+                {post.title}
+              </h1>
 
-            <div className="mt-8 space-y-5">
-              {post.content.map((paragraph, i) => (
-                <p
-                  key={i}
-                  className="text-base leading-relaxed text-muted sm:text-lg"
-                >
-                  {paragraph}
-                </p>
-              ))}
-            </div>
-
-            {/* Benefits */}
-            <div className="mt-10 rounded-2xl border bg-elevated p-6 sm:p-8">
-              <h2 className="font-serif text-2xl font-semibold">
-                Key Benefits
-              </h2>
-              <ul className="mt-4 space-y-3">
-                {post.benefits.map((benefit, i) => (
-                  <li key={i} className="flex items-start gap-3">
-                    <CheckCircle2
-                      className="mt-0.5 h-5 w-5 shrink-0 text-gold"
-                      aria-hidden
-                    />
-                    <span className="text-muted">{benefit}</span>
-                  </li>
+              <div className="mt-8 space-y-5">
+                {post.content.map((paragraph, i) => (
+                  <p
+                    key={i}
+                    className="text-base leading-relaxed text-muted sm:text-lg"
+                  >
+                    {paragraph}
+                  </p>
                 ))}
-              </ul>
-            </div>
+              </div>
 
-            {/* Conclusion */}
-            <div className="mt-10">
-              <h2 className="font-serif text-2xl font-semibold">Conclusion</h2>
-              <p className="mt-4 text-base leading-relaxed text-muted sm:text-lg">
-                {post.conclusion}
-              </p>
-            </div>
+              {/* Benefits */}
+              <div className="mt-10 rounded-2xl border bg-elevated p-6 sm:p-8">
+                <h2 className="font-serif text-2xl font-semibold">
+                  Key Benefits
+                </h2>
+                <ul className="mt-4 space-y-3">
+                  {post.benefits.map((benefit, i) => (
+                    <li key={i} className="flex items-start gap-3">
+                      <CheckCircle2
+                        className="mt-0.5 h-5 w-5 shrink-0 text-gold"
+                        aria-hidden
+                      />
+                      <span className="text-muted">{benefit}</span>
+                    </li>
+                  ))}
+                </ul>
+              </div>
 
-            {/* Footer CTA */}
-            <div className="mt-12 flex flex-col items-center gap-4 border-t pt-8 sm:flex-row sm:justify-between">
-              <Link
-                href="/#blog"
-                className="inline-flex items-center gap-2 text-sm font-semibold text-gold hover:text-gold-dark"
-              >
-                <ArrowLeft className="h-4 w-4" />
-                Back to Articles
-              </Link>
-              <a
-                href={whatsappLink()}
-                target="_blank"
-                rel="noopener noreferrer"
-                className="btn-whatsapp inline-flex items-center gap-2"
-              >
-                <MessageCircle className="h-5 w-5" aria-hidden />
-                Start Your Yoga Journey
-              </a>
+              {/* Conclusion */}
+              <div className="mt-10">
+                <h2 className="font-serif text-2xl font-semibold">
+                  Conclusion
+                </h2>
+                <p className="mt-4 text-base leading-relaxed text-muted sm:text-lg">
+                  {post.conclusion}
+                </p>
+              </div>
+
+              {/* Footer CTA */}
+              <div className="mt-12 flex flex-col items-center gap-4 border-t pt-8 sm:flex-row sm:justify-between">
+                <Link
+                  href="/#blog"
+                  className="inline-flex items-center gap-2 text-sm font-semibold text-gold hover:text-gold-dark"
+                >
+                  <ArrowLeft className="h-4 w-4" />
+                  Back to Articles
+                </Link>
+                <a
+                  href={whatsappLink()}
+                  target="_blank"
+                  rel="noopener noreferrer"
+                  className="btn-whatsapp inline-flex items-center gap-2"
+                >
+                  <MessageCircle className="h-5 w-5" aria-hidden />
+                  Start Your Yoga Journey
+                </a>
+              </div>
+            </article>
+
+            {/* Sidebar */}
+            <div className="mt-12 lg:mt-0">
+              <BlogSidebar currentSlug={slug} />
             </div>
           </div>
-        </article>
+        </div>
       </main>
       <Footer />
       <FloatingWhatsApp />

@@ -10,7 +10,8 @@
       "Bash(npm install next@latest 2>&1)",
       "Bash(npm ls next 2>&1 | head -3)",
       "Bash(npx next lint 2>&1 | head -20)",
-      "Bash(tree -d -L 3 /home/singshiv90/projects/shiva 2>/dev/null || find /home/singshiv90/projects/shiva -type d -not -path '*/\\\\.*' | head -30)"
+      "Bash(tree -d -L 3 /home/singshiv90/projects/shiva 2>/dev/null || find /home/singshiv90/projects/shiva -type d -not -path '*/\\\\.*' | head -30)",
+      "Bash(npm run build)"
     ]
   }
 }

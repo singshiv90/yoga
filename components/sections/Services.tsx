@@ -1,11 +1,10 @@
 "use client";
 
 import Image from "next/image";
-import { motion } from "framer-motion";
 import { ArrowUpRight } from "lucide-react";
 import { services } from "@/lib/data";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { StaggerGroup, staggerItem } from "@/components/ui/Reveal";
+import { StaggerGroup } from "@/components/ui/Reveal";
 import { whatsappLink } from "@/lib/config";
 
 export function Services() {
@@ -28,12 +27,9 @@ export function Services() {
           {services.map((service) => {
             const Icon = service.icon;
             return (
-              <motion.article
+              <article
                 key={service.title}
-                variants={staggerItem}
-                whileHover={{ y: -8 }}
-                transition={{ type: "spring", stiffness: 300, damping: 20 }}
-                className="group relative overflow-hidden rounded-3xl border bg-elevated shadow-sm transition-shadow hover:shadow-luxe"
+                className="group relative overflow-hidden rounded-3xl border bg-elevated shadow-sm transition-all hover:-translate-y-2 hover:shadow-luxe"
               >
                 <div className="relative h-44 overflow-hidden">
                   <Image
@@ -68,7 +64,7 @@ export function Services() {
                     <ArrowUpRight className="h-4 w-4" aria-hidden />
                   </a>
                 </div>
-              </motion.article>
+              </article>
             );
           })}
         </StaggerGroup>

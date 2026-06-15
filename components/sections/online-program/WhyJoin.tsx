@@ -1,9 +1,8 @@
 "use client";
 
-import { motion } from "framer-motion";
 import { onlineProgramBenefits } from "@/lib/online-program-data";
 import { SectionHeading } from "@/components/ui/SectionHeading";
-import { StaggerGroup, staggerItem } from "@/components/ui/Reveal";
+import { StaggerGroup } from "@/components/ui/Reveal";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
 
 export function WhyJoin() {
@@ -28,10 +27,8 @@ export function WhyJoin() {
             const Icon = benefit.icon;
             return (
               <SpotlightCard key={benefit.title}>
-                <motion.div
-                  variants={staggerItem}
-                  whileHover={{ y: -4 }}
-                  className="group flex items-start gap-4 rounded-2xl border bg-elevated p-6 transition-shadow hover:shadow-luxe card-glow-border"
+                <div
+                  className="group flex items-start gap-4 rounded-2xl border bg-elevated p-6 transition-all hover:-translate-y-1 hover:shadow-luxe card-glow-border"
                 >
                   <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-teal/12 text-teal transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
                     <Icon className="h-6 w-6" aria-hidden />
@@ -42,7 +39,7 @@ export function WhyJoin() {
                       {benefit.description}
                     </p>
                   </div>
-                </motion.div>
+                </div>
               </SpotlightCard>
             );
           })}
