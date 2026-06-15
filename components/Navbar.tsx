@@ -87,9 +87,9 @@ export function Navbar() {
           <Image
             src="/logo.png"
             alt={`${site.name} logo`}
-            width={100}
-            height={100}
-            className="h-[96px] w-[96px] object-contain"
+            width={80}
+            height={80}
+            className="h-20 w-20 rounded-full object-contain bg-ink/90 p-0.5 dark:bg-transparent dark:p-0"
           />
         </Link>
 
