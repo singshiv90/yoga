@@ -32,6 +32,7 @@ function TestimonialCard({ t }: { t: (typeof testimonials)[number] }) {
             src={t.image}
             alt={t.name}
             fill
+            loading="lazy"
             sizes="48px"
             className="object-cover"
           />

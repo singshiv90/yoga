@@ -35,6 +35,7 @@ export function Benefits() {
               src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?auto=format&fit=crop&w=900&q=80"
               alt="Yoga practitioner in a calm, balanced pose"
               fill
+              loading="lazy"
               sizes="(max-width: 1024px) 90vw, 45vw"
               className="object-cover"
             />

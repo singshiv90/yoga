@@ -14,6 +14,7 @@ export function WhatsAppCTA() {
           src="https://images.unsplash.com/photo-1540206351-d6465b3ac5c1?auto=format&fit=crop&w=1920&q=80"
           alt="Serene sunrise over a calm landscape"
           fill
+          loading="lazy"
           sizes="100vw"
           className="object-cover"
         />

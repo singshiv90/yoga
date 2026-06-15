@@ -17,6 +17,7 @@ export function About() {
               src={instructor.image}
               alt={`${instructor.name}, founder of Pranava Yoga`}
               fill
+              loading="lazy"
               sizes="(max-width: 1024px) 90vw, 40vw"
               className="object-cover"
             />

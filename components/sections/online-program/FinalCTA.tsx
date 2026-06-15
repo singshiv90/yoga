@@ -17,6 +17,7 @@ export function FinalCTA() {
           src="https://images.unsplash.com/photo-1545389336-cf090694435e?auto=format&fit=crop&w=1920&q=80"
           alt="Peaceful yoga and meditation setting"
           fill
+          loading="lazy"
           sizes="100vw"
           className="object-cover"
         />

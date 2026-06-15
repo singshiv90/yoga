@@ -1,8 +1,11 @@
 "use client";
 
-import { motion } from "framer-motion";
 import type { ReactNode } from "react";
 
+/**
+ * Infinite scrolling marquee using pure CSS animation.
+ * Runs on the compositor thread (GPU) — zero JS animation overhead.
+ */
 export function Marquee({
   children,
   speed = 30,
@@ -24,20 +27,16 @@ export function Marquee({
           "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
       }}
     >
-      <motion.div
+      <div
         className={`flex w-max gap-6 ${pauseOnHover ? "group-hover:[animation-play-state:paused]" : ""}`}
-        animate={{ x: [0, "-50%"] }}
-        transition={{
-          x: {
-            duration: speed,
-            repeat: Infinity,
-            ease: "linear",
-          },
+        style={{
+          animation: `marquee-scroll ${speed}s linear infinite`,
+          willChange: "transform",
         }}
       >
         {children}
         {children}
-      </motion.div>
+      </div>
     </div>
   );
 }
