@@ -113,6 +113,8 @@ export default async function BlogPostPage({
             className="object-cover"
           />
           <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/40 to-transparent" />
+          {/* Top overlay so fixed navbar + logo match other pages */}
+          <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-ink/60 to-transparent" />
 
           <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-10">
             <div className="container-luxe">
