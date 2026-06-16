@@ -4,6 +4,7 @@ import "./globals.css";
 import { ThemeProvider } from "@/components/providers/ThemeProvider";
 import { ScrollProgress } from "@/components/ui/ScrollProgress";
 import { AmbientOrbs } from "@/components/ui/AmbientOrbs";
+import { PageLoader } from "@/components/ui/PageLoader";
 import { site, social } from "@/lib/config";
 
 const serif = Cormorant_Garamond({
@@ -116,6 +117,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${serif.variable} ${sans.variable}`}>
       <body>
+        <PageLoader />
 <script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}

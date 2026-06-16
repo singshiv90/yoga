@@ -51,7 +51,7 @@ export const onlineProgramContact = {
 export const contact = {
   email: "shilpa.pranavayoga@gmail.com",
   phoneDisplay: "+91 7058155564",
-  phoneHref: "tel:+97058155564",
+  phoneHref: "tel:+91 7058155564",
   whatsappDisplay: "+91 7058155564",
 };
 
