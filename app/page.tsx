@@ -5,6 +5,7 @@ import { SectionDivider } from "@/components/ui/SectionDivider";
 import { Hero } from "@/components/sections/Hero";
 import { TrustSection } from "@/components/sections/TrustSection";
 import { About } from "@/components/sections/About";
+import { LogoMeaning } from "@/components/sections/LogoMeaning";
 import { Services } from "@/components/sections/Services";
 import { Benefits } from "@/components/sections/Benefits";
 import { InstagramSection } from "@/components/sections/InstagramSection";
@@ -26,6 +27,8 @@ export default function Home() {
         <TrustSection />
         <SectionDivider variant="curve" />
         <About />
+        <SectionDivider variant="curve" />
+        <LogoMeaning />
         <SectionDivider variant="wave" flip />
         <Services />
         <SectionDivider variant="curve" />

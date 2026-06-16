@@ -29,6 +29,13 @@
     border-color: rgb(var(--border));
   }
 
+  /* Suppress iOS tap-highlight flash on interactive elements */
+  button,
+  a,
+  [role="button"] {
+    -webkit-tap-highlight-color: transparent;
+  }
+
   html {
     scroll-behavior: smooth;
     scroll-padding-top: 6rem;

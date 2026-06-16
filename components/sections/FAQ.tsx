@@ -1,7 +1,6 @@
 "use client";
 
 import { useState } from "react";
-import { AnimatePresence, motion } from "framer-motion";
 import { Plus } from "lucide-react";
 import { faqs } from "@/lib/data";
 import { SectionHeading } from "@/components/ui/SectionHeading";
@@ -57,20 +56,26 @@ export function FAQ() {
                       <Plus className="h-5 w-5" aria-hidden />
                     </span>
                   </button>
-                  <AnimatePresence initial={false}>
-                    {isOpen && (
-                      <motion.div
-                        initial={{ height: 0, opacity: 0 }}
-                        animate={{ height: "auto", opacity: 1 }}
-                        exit={{ height: 0, opacity: 0 }}
-                        transition={{ duration: 0.3, ease: [0.22, 1, 0.36, 1] }}
-                      >
-                        <p className="px-5 pb-5 text-sm leading-relaxed text-muted sm:text-base">
-                          {faq.answer}
-                        </p>
-                      </motion.div>
-                    )}
-                  </AnimatePresence>
+
+                  {/*
+                    CSS grid-template-rows trick: animates from 0fr → 1fr.
+                    Runs entirely on the compositor thread — no height measurement,
+                    no opacity, no Framer Motion mount/unmount = zero iOS blink.
+                  */}
+                  <div
+                    style={{
+                      display: "grid",
+                      gridTemplateRows: isOpen ? "1fr" : "0fr",
+                      transition:
+                        "grid-template-rows 0.32s cubic-bezier(0.22, 1, 0.36, 1)",
+                    }}
+                  >
+                    <div style={{ overflow: "hidden" }}>
+                      <p className="px-5 pb-5 text-sm leading-relaxed text-muted sm:text-base">
+                        {faq.answer}
+                      </p>
+                    </div>
+                  </div>
                 </div>
               </Reveal>
             );
