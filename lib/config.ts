@@ -29,7 +29,7 @@ export function whatsappLink(message: string = WHATSAPP_DEFAULT_MESSAGE) {
 }
 
 // --- Online Program dedicated contact ---
-export const ONLINE_PROGRAM_WHATSAPP_NUMBER = "917738501343";
+export const ONLINE_PROGRAM_WHATSAPP_NUMBER = "917058155564";
 
 export const ONLINE_PROGRAM_WHATSAPP_MESSAGE =
   "Hi! I'm interested in the Online Yoga Program. I'd like to know more about the classes and schedule.";
@@ -42,8 +42,8 @@ export function onlineProgramWhatsappLink(
 }
 
 export const onlineProgramContact = {
-  phone1Display: "+91 7738501343",
-  phone1Href: "tel:+917738501343",
+  phone1Display: "+91 7058155564",
+  phone1Href: "tel:+917058155564",
   phone2Display: "+91 7058155564",
   phone2Href: "tel:+917058155564",
 };

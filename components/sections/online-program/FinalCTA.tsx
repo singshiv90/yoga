@@ -76,13 +76,6 @@ export function FinalCTA() {
               <Phone className="h-4 w-4" aria-hidden />
               {onlineProgramContact.phone1Display}
             </a>
-            <a
-              href={onlineProgramContact.phone2Href}
-              className="inline-flex items-center gap-1.5 transition-colors hover:text-teal-light"
-            >
-              <Phone className="h-4 w-4" aria-hidden />
-              {onlineProgramContact.phone2Display}
-            </a>
           </div>
         </Reveal>
       </div>

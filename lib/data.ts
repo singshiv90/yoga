@@ -38,7 +38,7 @@ export interface Stat {
 
 export const stats: Stat[] = [
   { value: "2+", label: "Years Experience", icon: Sparkles, numericValue: 2, suffix: "+" },
-  { value: "1000+", label: "Students Guided", icon: Users, numericValue: 1000, suffix: "+" },
+  { value: "20+", label: "Students Guided", icon: Users, numericValue: 1000, suffix: "+" },
   { value: "Online", label: "Classes Worldwide", icon: Video },
   { value: "1:1", label: "Personalized Training", icon: User },
 ];
@@ -51,16 +51,18 @@ export const instructor = {
   image:
     "/15db5002-5e1d-44d3-a3aa-03177ced5558.jpg?auto=format&fit=crop&w=900&q=80",
   roles: [
-    "Certified Yoga Instructor",
+    "RYT 200 Certified Yoga Teacher",
     "Meditation Guide",
-    "Wellness Coach",
+    "Mindfulness Coach",
     "Transformation Mentor",
   ],
-  bio: "For over fifteen years, Ananya has guided more than a thousand students from stress and stiffness toward strength, stillness, and self-mastery. Her approach blends classical Ashtanga and Hatha lineages with modern breath science — tailored to your body, your schedule, and your goals.",
+  bio: "My journey with yoga began as a search for stillness — and slowly, it became a way of life. I am a certified RYT 200 yoga teacher, trained at the birthplace of yoga in Rishikesh, India, where ancient tradition and living practice meet. Over the past two years, I have had the privilege of guiding students through genuine transformation — helping them build strength, move with greater ease, and find quiet clarity beneath the noise of everyday life. At Pranava Yoga, my teaching is rooted in the disciplines of Ashtanga, Vinyasa, and Hatha yoga, woven together with breath and mindfulness. I believe every body holds the capacity for change — not just physically, but deeply within. My intention is not to teach you yoga, but to help you remember who you already are.",
   credentials: [
-    "RYT 200 Certified Yoga Teacher",
+    "RYT 200 Certified — Yoga Alliance",
     "Trained in Rishikesh, India",
-    "Ashtanga 🕉️ Vinyasa 🕉️ Meditation",
+    "Ashtanga · Vinyasa · Hatha Yoga",
+    "Meditation & Breathwork",
+    "2+ Years of Teaching Experience",
   ],
 };
 

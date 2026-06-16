@@ -132,8 +132,7 @@ export const pricingPlans: PricingPlan[] = [
       "Monday to Saturday access",
       "Yoga + Pranayama + Meditation",
       "Flexible batch timing",
-      "Priority WhatsApp support",
-      "Progress tracking guidance",
+      "WhatsApp support"
     ],
   },
 ];
@@ -195,7 +194,7 @@ export const programTrustPoints: TrustPoint[] = [
     icon: Shield,
   },
   {
-    title: "1000+ Students",
+    title: "20+ Students",
     description: "Trusted by students across India and worldwide.",
     icon: Users,
   },
