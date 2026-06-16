@@ -34,9 +34,9 @@ export function Hero() {
             initial={{ opacity: 0, y: 16 }}
             animate={{ opacity: 1, y: 0 }}
             transition={{ duration: 0.6, ease }}
-            className="kicker-teal text-teal-light"
+            className="kicker text-gold-light"
           >
-            <span className="h-px w-6 bg-teal-light" />
+            <span className="h-px w-6 bg-gold-light" />
             Online Yoga Program
           </motion.span>
 
@@ -47,7 +47,7 @@ export function Hero() {
             className="mt-6 font-serif text-4xl font-semibold leading-[1.08] sm:text-6xl lg:text-7xl"
           >
             Transform Your Mind, Body &amp; Energy Through{" "}
-            <span className="text-gradient-teal">Yoga</span>
+            <span className="text-gradient-gold">Yoga</span>
           </motion.h1>
 
           <motion.p
@@ -67,7 +67,7 @@ export function Hero() {
             transition={{ duration: 0.9, ease, delay: 0.4 }}
             className="mt-9 flex flex-col gap-4 sm:flex-row"
           >
-            <MagneticButton as="a" href="#op-free-demo" className="btn-teal">
+            <MagneticButton as="a" href="#op-free-demo" className="btn-primary">
               Book Free Demo
               <ArrowRight className="h-4 w-4" aria-hidden />
             </MagneticButton>

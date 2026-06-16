@@ -27,8 +27,8 @@ export function FinalCTA() {
 
       <div className="container-luxe relative text-center text-white">
         <Reveal direction="up">
-          <span className="kicker-teal justify-center text-teal-light">
-            <span className="h-px w-6 bg-teal-light" />
+          <span className="kicker justify-center text-gold-light">
+            <span className="h-px w-6 bg-gold-light" />
             Your Journey Begins Now
           </span>
         </Reveal>
@@ -59,7 +59,7 @@ export function FinalCTA() {
               <MessageCircle className="h-5 w-5" aria-hidden />
               Chat on WhatsApp
             </a>
-            <a href="#op-pricing" className="btn-teal">
+            <a href="#op-pricing" className="btn-primary">
               <ArrowRight className="h-5 w-5" aria-hidden />
               View Plans &amp; Enroll
             </a>
@@ -71,7 +71,7 @@ export function FinalCTA() {
           <div className="mt-8 flex flex-col items-center justify-center gap-3 text-sm text-white/70 sm:flex-row sm:gap-6">
             <a
               href={onlineProgramContact.phone1Href}
-              className="inline-flex items-center gap-1.5 transition-colors hover:text-teal-light"
+              className="inline-flex items-center gap-1.5 transition-colors hover:text-gold-light"
             >
               <Phone className="h-4 w-4" aria-hidden />
               {onlineProgramContact.phone1Display}

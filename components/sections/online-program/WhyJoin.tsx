@@ -10,12 +10,12 @@ export function WhyJoin() {
     <section id="op-why-join" className="section-pad">
       <div className="container-luxe">
         <SectionHeading
-          variant="teal"
+          variant="gold"
           kicker="Why Join"
           title={
             <>
               Everything You Need for a{" "}
-              <span className="text-gradient-teal">Complete Practice</span>
+              <span className="text-gradient-gold">Complete Practice</span>
             </>
           }
           subtitle="Our online program is designed to fit your lifestyle while delivering real, lasting results."
@@ -30,7 +30,7 @@ export function WhyJoin() {
                 <div
                   className="group flex items-start gap-4 rounded-2xl border bg-elevated p-6 transition-all hover:-translate-y-1 hover:shadow-luxe card-glow-border"
                 >
-                  <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-teal/12 text-teal transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
+                  <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-gold/12 text-gold transition-transform duration-300 group-hover:scale-110 group-hover:rotate-6">
                     <Icon className="h-6 w-6" aria-hidden />
                   </span>
                   <div>

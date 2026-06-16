@@ -59,6 +59,20 @@ export function Navbar() {
     };
   }, [open]);
 
+  /**
+   * Force scroll to section even when the hash URL hasn't changed.
+   * Without this, clicking "#benefits" while already at "/#benefits" does nothing.
+   */
+  const handleNavClick = (
+    e: React.MouseEvent<HTMLAnchorElement>,
+    href: string,
+  ) => {
+    if (!href.startsWith("#") || pathname !== "/") return;
+    e.preventDefault();
+    const el = document.getElementById(href.slice(1));
+    if (el) el.scrollIntoView({ behavior: "smooth" });
+  };
+
   return (
     <header
       className={cn(
@@ -75,7 +89,11 @@ export function Navbar() {
               borderBottom: "1px solid rgb(var(--accent) / 0.1)",
               boxShadow: "0 1px 3px 0 rgb(0 0 0 / 0.05)",
             }
-          : { background: "transparent" }
+          : {
+              background: "transparent",
+              borderBottom: "1px solid transparent",
+              boxShadow: "none",
+            }
       }
     >
       <nav className="container-luxe flex h-20 items-center justify-between py-4">
@@ -96,11 +114,14 @@ export function Navbar() {
         {/* Desktop links */}
         <ul className="hidden items-center gap-8 lg:flex">
           {navLinks.map((link) => {
-            const isActive = activeSection === link.href;
+            const isActive = link.href.startsWith("#")
+              ? activeSection === link.href
+              : pathname === link.href;
             return (
               <li key={link.href} className="relative">
                 <Link
                   href={resolveHref(link.href, pathname)}
+                  onClick={(e) => handleNavClick(e, link.href)}
                   className={cn(
                     "text-sm font-medium transition-colors hover:text-gold",
                     isActive
@@ -165,7 +186,7 @@ export function Navbar() {
               <li key={link.href}>
                 <Link
                   href={resolveHref(link.href, pathname)}
-                  onClick={() => setOpen(false)}
+                  onClick={(e) => { handleNavClick(e, link.href); setOpen(false); }}
                   className="block rounded-xl px-4 py-3 text-base font-medium text-[rgb(var(--fg))] transition-colors hover:bg-gold/10"
                 >
                   {link.label}

@@ -116,7 +116,7 @@ export default function RootLayout({
   return (
     <html lang="en" suppressHydrationWarning className={`${serif.variable} ${sans.variable}`}>
       <body>
-        <script
+<script
           type="application/ld+json"
           dangerouslySetInnerHTML={{ __html: JSON.stringify(jsonLd) }}
         />

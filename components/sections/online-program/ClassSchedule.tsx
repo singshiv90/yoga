@@ -10,12 +10,12 @@ export function ClassSchedule() {
     <section id="op-schedule" className="section-pad">
       <div className="container-luxe">
         <SectionHeading
-          variant="teal"
+          variant="gold"
           kicker="Class Schedule"
           title={
             <>
               Pick a Time That{" "}
-              <span className="text-gradient-teal">Fits Your Life</span>
+              <span className="text-gradient-gold">Fits Your Life</span>
             </>
           }
           subtitle={`Classes run ${classSchedule.days}. Choose any batch — switch anytime.`}
@@ -27,7 +27,7 @@ export function ClassSchedule() {
               key={slot.time}
               className="glass flex items-center gap-4 rounded-2xl p-6"
             >
-              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-teal/12 text-teal">
+              <span className="grid h-12 w-12 shrink-0 place-items-center rounded-xl bg-gold/12 text-gold">
                 <Clock className="h-6 w-6" aria-hidden />
               </span>
               <div>
@@ -40,7 +40,7 @@ export function ClassSchedule() {
 
         {/* Platform badge */}
         <div className="mt-8 flex justify-center">
-          <span className="inline-flex items-center gap-2 rounded-full border border-teal/30 bg-teal/5 px-5 py-2.5 text-sm font-medium text-teal">
+          <span className="inline-flex items-center gap-2 rounded-full border border-gold/30 bg-gold/5 px-5 py-2.5 text-sm font-medium text-gold">
             <Video className="h-4 w-4" aria-hidden />
             {classSchedule.platform}
           </span>

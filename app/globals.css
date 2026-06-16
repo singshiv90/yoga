@@ -272,7 +272,7 @@
 
 @layer utilities {
   .section-pad {
-    @apply py-20 sm:py-28;
+    @apply py-12 sm:py-16;
   }
 
   /* Stagger children — SSR-safe initial hidden state for StaggerGroup */

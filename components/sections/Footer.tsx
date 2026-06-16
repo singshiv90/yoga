@@ -113,7 +113,7 @@ export function Footer() {
               Services
             </h3>
             <ul className="mt-4 space-y-2.5">
-              {services.slice(0, 6).map((s) => (
+              {services.map((s) => (
                 <li key={s.title}>
                   <Link
                     href={resolveHref("#services", pathname)}

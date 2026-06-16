@@ -23,7 +23,7 @@ export function BlogSection() {
         />
 
         <StaggerGroup className="mt-12 grid gap-6 sm:grid-cols-2 lg:grid-cols-4">
-          {blogPosts.map((post) => {
+          {blogPosts.slice(0, 4).map((post) => {
             const Icon = post.icon;
             return (
               <article
@@ -80,8 +80,8 @@ export function BlogSection() {
 
         <div className="mt-10 text-center">
           <Link
-            href="#blog"
-            className="inline-flex items-center gap-2 rounded-full border-2 border-gold px-7 py-3.5 text-sm font-semibold text-gold transition-all hover:-translate-y-0.5 hover:bg-gold hover:text-white"
+            href="/blog"
+            className="inline-flex items-center gap-2 rounded-full border-2 border-gold px-7 py-3.5 text-sm font-semibold text-gold transition-all hover:-translate-y-0.5 hover:bg-gold hover:text-ink"
           >
             View All Articles
             <ArrowRight className="h-4 w-4" aria-hidden />

@@ -130,15 +130,15 @@ export function Pricing() {
 
   return (
     <>
-      <section id="op-pricing" className="section-pad bg-radial-fade-teal">
+      <section id="op-pricing" className="section-pad bg-radial-fade">
         <div className="container-luxe">
           <SectionHeading
-            variant="teal"
+            variant="gold"
             kicker="Pricing"
             title={
               <>
                 Simple, Transparent{" "}
-                <span className="text-gradient-teal">Pricing</span>
+                <span className="text-gradient-gold">Pricing</span>
               </>
             }
             subtitle="No hidden fees. No long-term lock-in. Start with a free demo, then choose the plan that works for you."
@@ -150,11 +150,11 @@ export function Pricing() {
                 key={plan.name}
                 className={cn(
                   "relative flex flex-col rounded-3xl border p-8",
-                  plan.popular ? "border-teal shadow-glow-teal" : "glass",
+                  plan.popular ? "border-gold shadow-glow" : "glass",
                 )}
               >
                 {plan.popular && (
-                  <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-teal px-4 py-1 text-xs font-semibold text-white">
+                  <span className="absolute -top-3.5 left-1/2 -translate-x-1/2 rounded-full bg-gold px-4 py-1 text-xs font-semibold text-ink">
                     Most Popular
                   </span>
                 )}
@@ -165,7 +165,7 @@ export function Pricing() {
                   <span
                     className={cn(
                       "font-serif text-4xl font-bold",
-                      plan.popular && "text-gradient-teal",
+                      plan.popular && "text-gradient-gold",
                     )}
                   >
                     {plan.price}
@@ -174,7 +174,7 @@ export function Pricing() {
                 </div>
 
                 {plan.savings && (
-                  <span className="mt-2 inline-block w-fit rounded-full bg-teal/10 px-3 py-1 text-xs font-semibold text-teal">
+                  <span className="mt-2 inline-block w-fit rounded-full bg-gold/10 px-3 py-1 text-xs font-semibold text-gold">
                     {plan.savings}
                   </span>
                 )}
@@ -183,7 +183,7 @@ export function Pricing() {
                   {plan.features.map((feature) => (
                     <li key={feature} className="flex items-start gap-2 text-sm">
                       <CheckCircle
-                        className="mt-0.5 h-4 w-4 shrink-0 text-teal"
+                        className="mt-0.5 h-4 w-4 shrink-0 text-gold"
                         aria-hidden
                       />
                       {feature}
@@ -199,7 +199,7 @@ export function Pricing() {
                   rel="noopener noreferrer"
                   className={cn(
                     "mt-8",
-                    plan.popular ? "btn-teal" : "btn-teal-secondary",
+                    plan.popular ? "btn-primary" : "btn-secondary",
                   )}
                 >
                   Get Started
@@ -233,13 +233,13 @@ export function Pricing() {
             <button
               type="button"
               onClick={() => setOpenModal("guidelines")}
-              className="group inline-flex items-center gap-1.5 rounded text-sm text-muted transition-colors duration-200 hover:text-teal focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-teal focus-visible:ring-offset-2"
+              className="group inline-flex items-center gap-1.5 rounded text-sm text-muted transition-colors duration-200 hover:text-gold focus-visible:outline-none focus-visible:ring-2 focus-visible:ring-gold focus-visible:ring-offset-2"
             >
               <ClipboardList
                 className="h-3.5 w-3.5 shrink-0 opacity-60 transition-opacity duration-200 group-hover:opacity-100"
                 aria-hidden
               />
-              <span className="underline decoration-dotted underline-offset-4 decoration-teal/40 transition-all duration-200 group-hover:decoration-teal/80">
+              <span className="underline decoration-dotted underline-offset-4 decoration-gold/40 transition-all duration-200 group-hover:decoration-gold/80">
                 Online Session Guidelines
               </span>
             </button>
@@ -261,7 +261,7 @@ export function Pricing() {
         isOpen={openModal === "guidelines"}
         onClose={() => setOpenModal(null)}
         title="Online Session Guidelines"
-        accentColor="teal"
+        accentColor="gold"
         headerEmoji="🪷"
         items={sessionGuidelinesItems}
         footerNote="These guidelines are designed to ensure the best experience for all participants. Thank you for your cooperation."

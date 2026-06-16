@@ -9,6 +9,7 @@
 import type { LucideIcon } from "lucide-react";
 import {
   Activity,
+  Apple,
   Brain,
   Briefcase,
   Flower2,
@@ -38,7 +39,7 @@ export interface Stat {
 
 export const stats: Stat[] = [
   { value: "2+", label: "Years Experience", icon: Sparkles, numericValue: 2, suffix: "+" },
-  { value: "20+", label: "Students Guided", icon: Users, numericValue: 1000, suffix: "+" },
+  { value: "20+", label: "Students Guided", icon: Users, numericValue: 20, suffix: "+" },
   { value: "Online", label: "Classes Worldwide", icon: Video },
   { value: "1:1", label: "Personalized Training", icon: User },
 ];
@@ -140,6 +141,14 @@ export const services: Service[] = [
     icon: User,
     image:
       "https://images.unsplash.com/photo-1571019613454-1cb2f99b2d8b?auto=format&fit=crop&w=800&q=80",
+  },
+  {
+    title: "Nutrition",
+    description:
+      "Mindful eating guidance rooted in Ayurvedic principles — nourish your body with foods that support energy, balance, and lasting wellness.",
+    icon: Apple,
+    image:
+      "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80",
   },
 ];
 

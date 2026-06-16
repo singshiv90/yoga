@@ -9,12 +9,12 @@ export function EnrollmentProcess() {
     <section id="op-enrollment" className="section-pad">
       <div className="container-luxe">
         <SectionHeading
-          variant="teal"
+          variant="gold"
           kicker="How to Join"
           title={
             <>
               Get Started in{" "}
-              <span className="text-gradient-teal">4 Simple Steps</span>
+              <span className="text-gradient-gold">4 Simple Steps</span>
             </>
           }
           subtitle="From your first free class to a consistent practice — we make it easy."
@@ -32,18 +32,18 @@ export function EnrollmentProcess() {
               >
                 {/* Vertical line + numbered circle */}
                 <div className="flex flex-col items-center">
-                  <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-teal text-sm font-bold text-white">
+                  <span className="grid h-12 w-12 shrink-0 place-items-center rounded-full bg-gold text-sm font-bold text-ink">
                     {step.step}
                   </span>
                   {!isLast && (
-                    <span className="w-px flex-1 bg-teal/20" />
+                    <span className="w-px flex-1 bg-gold/20" />
                   )}
                 </div>
 
                 {/* Content */}
                 <div className={isLast ? "pb-0" : "pb-10"}>
                   <div className="flex items-center gap-3">
-                    <Icon className="h-5 w-5 text-teal" aria-hidden />
+                    <Icon className="h-5 w-5 text-gold" aria-hidden />
                     <h3 className="text-lg font-semibold">{step.title}</h3>
                   </div>
                   <p className="mt-2 text-sm text-muted leading-relaxed">

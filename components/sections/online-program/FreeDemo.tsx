@@ -9,7 +9,7 @@ export function FreeDemo() {
   return (
     <section
       id="op-free-demo"
-      className="section-pad bg-radial-fade-teal"
+      className="section-pad bg-radial-fade"
     >
       <div className="container-luxe">
         <Reveal>
@@ -17,14 +17,14 @@ export function FreeDemo() {
             <motion.div
               animate={{ y: [0, -10, 0] }}
               transition={{ duration: 6, ease: "easeInOut", repeat: Infinity }}
-              className="mx-auto mb-6 grid h-16 w-16 place-items-center rounded-2xl bg-teal/12 text-teal"
+              className="mx-auto mb-6 grid h-16 w-16 place-items-center rounded-2xl bg-gold/12 text-gold"
             >
               <Gift className="h-8 w-8" aria-hidden />
             </motion.div>
 
             <h2 className="font-serif text-3xl font-semibold leading-tight sm:text-4xl">
               Try a{" "}
-              <span className="text-gradient-teal">Free Demo Class</span>
+              <span className="text-gradient-gold">Free Demo Class</span>
             </h2>
 
             <p className="mx-auto mt-4 max-w-md text-base text-muted sm:text-lg">
@@ -38,7 +38,7 @@ export function FreeDemo() {
               )}
               target="_blank"
               rel="noopener noreferrer"
-              className="btn-teal mt-8"
+              className="btn-primary mt-8"
             >
               Book Free Demo
               <ArrowRight className="h-4 w-4" aria-hidden />
