@@ -39,7 +39,12 @@ function Hotspot({
     <motion.button
       onClick={onClick}
       className="absolute z-20 -translate-x-1/2 -translate-y-1/2"
-      style={{ left: `${x}%`, top: `${y}%` }}
+      style={{
+        left: `${x}%`,
+        top: `${y}%`,
+        WebkitBackfaceVisibility: "hidden",
+        willChange: "transform, opacity",
+      }}
       animate={{
         scale: isActive ? 1 : 0.55,
         opacity: isActive ? 1 : 0.4,
@@ -47,56 +52,41 @@ function Hotspot({
       transition={SPRING}
       aria-label={`Show symbol: ${logoSymbols[index].title}`}
     >
-      {/* Outer pulse ring 1 — large, slow */}
-      {isActive && (
-        <span
-          className="absolute -inset-3 rounded-full border-2 border-gold/60 animate-pulse-ring"
-          aria-hidden="true"
-        />
-      )}
-      {/* Outer pulse ring 2 — staggered */}
-      {isActive && (
-        <span
-          className="absolute -inset-2 rounded-full border border-gold/40 animate-pulse-ring"
-          style={{ animationDelay: "0.6s" }}
-          aria-hidden="true"
-        />
-      )}
-      {/* Glow halo */}
-      <motion.span
-        className="absolute -inset-2 rounded-full"
-        animate={{
-          boxShadow: isActive
-            ? [
-                "0 0 8px 3px rgba(201,162,75,0.4)",
-                "0 0 20px 8px rgba(201,162,75,0.6)",
-                "0 0 8px 3px rgba(201,162,75,0.4)",
-              ]
-            : "0 0 0px 0px rgba(201,162,75,0)",
+      {/* Pulse ring — always mounted, animated via opacity to avoid iOS reflow */}
+      <span
+        className="absolute -inset-3 rounded-full border-2 border-gold/60 animate-pulse-ring"
+        style={{
+          opacity: isActive ? 1 : 0,
+          transition: "opacity 0.3s",
+          WebkitBackfaceVisibility: "hidden",
         }}
-        transition={{
-          duration: 2,
-          repeat: Infinity,
-          ease: "easeInOut",
-        }}
+        aria-hidden="true"
+      />
+      {/* Glow halo — CSS animation instead of Framer boxShadow keyframes */}
+      <span
+        className={cn(
+          "absolute -inset-2 rounded-full transition-opacity duration-300",
+          isActive ? "opacity-100 animate-glow-pulse" : "opacity-0",
+        )}
+        style={{ WebkitBackfaceVisibility: "hidden" }}
         aria-hidden="true"
       />
       {/* Core dot */}
       <span
         className={cn(
-          "relative block h-5 w-5 rounded-full border-2 transition-colors duration-300",
+          "relative block h-5 w-5 rounded-full border-2 transition-all duration-300",
           isActive
             ? "border-gold bg-gold shadow-[0_0_18px_6px_rgba(201,162,75,0.5)]"
             : "border-gold/60 bg-gold/25",
         )}
+        style={{ WebkitBackfaceVisibility: "hidden" }}
       >
-        {/* Inner bright center */}
-        {isActive && (
-          <span
-            className="absolute inset-1 rounded-full bg-white/70"
-            aria-hidden="true"
-          />
-        )}
+        {/* Inner bright center — always mounted, toggled via opacity */}
+        <span
+          className="absolute inset-1 rounded-full bg-white/70 transition-opacity duration-300"
+          style={{ opacity: isActive ? 1 : 0 }}
+          aria-hidden="true"
+        />
       </span>
     </motion.button>
   );
@@ -154,15 +144,19 @@ function TextPanel({ activeIndex }: { activeIndex: number }) {
     <AnimatePresence mode="wait">
       <motion.div
         key={symbol.id}
-        initial={{ opacity: 0, y: 30, filter: "blur(6px)" }}
-        animate={{ opacity: 1, y: 0, filter: "blur(0px)" }}
-        exit={{ opacity: 0, y: -20, filter: "blur(4px)" }}
+        initial={{ opacity: 0, y: 24 }}
+        animate={{ opacity: 1, y: 0 }}
+        exit={{ opacity: 0, y: -16 }}
         transition={{
-          duration: 0.5,
+          duration: 0.45,
           ease: EASE,
-          exit: { duration: 0.3 },
+          exit: { duration: 0.25 },
         }}
         className="flex flex-col"
+        style={{
+          WebkitBackfaceVisibility: "hidden",
+          willChange: "transform, opacity",
+        }}
       >
         {/* Icon badge */}
         <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-gold/30 bg-gold/10">
