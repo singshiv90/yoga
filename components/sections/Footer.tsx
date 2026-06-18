@@ -33,7 +33,13 @@ export function Footer() {
           {/* Brand */}
           <div className="flex flex-col items-center lg:items-center lg:pr-6">
             <Link
-              href={pathname === "/" ? "#hero" : "/"}
+              href="/"
+              onClick={(e) => {
+                if (pathname === "/") {
+                  e.preventDefault();
+                  window.scrollTo({ top: 0, behavior: "smooth" });
+                }
+              }}
             >
               <Image
                 src="/logo.png"

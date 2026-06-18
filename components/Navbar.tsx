@@ -98,7 +98,13 @@ export function Navbar() {
     >
       <nav className="container-luxe flex h-20 items-center justify-between py-4">
         <Link
-          href={pathname === "/" ? "#hero" : "/"}
+          href="/"
+          onClick={(e) => {
+            if (pathname === "/") {
+              e.preventDefault();
+              window.scrollTo({ top: 0, behavior: "smooth" });
+            }
+          }}
           className="flex items-center gap-2.5 font-serif text-xl font-semibold"
           aria-label={`${site.name} home`}
         >

@@ -14,7 +14,7 @@ import { Navbar } from "@/components/Navbar";
 import { Footer } from "@/components/sections/Footer";
 import { FloatingWhatsApp } from "@/components/FloatingWhatsApp";
 import { BackToTop } from "@/components/ui/BackToTop";
-import { BlogSidebar } from "@/components/blog/BlogSidebar";
+
 
 // ---------------------------------------------------------------------------
 // Static export — pre-render all blog slugs at build time
@@ -84,7 +84,7 @@ export default async function BlogPostPage({
               The article you&apos;re looking for doesn&apos;t exist.
             </p>
             <Link
-              href="/#blog"
+              href="/blog"
               className="mt-6 inline-flex items-center gap-2 text-gold hover:text-gold-dark"
             >
               <ArrowLeft className="h-4 w-4" />
@@ -139,9 +139,8 @@ export default async function BlogPostPage({
 
         {/* Article + Sidebar grid */}
         <div className="section-pad">
-          <div className="container-luxe grid lg:grid-cols-[1fr_300px] lg:gap-10">
-            {/* Article content */}
-            <article className="max-w-3xl">
+          <div className="container-luxe">
+            <article className="mx-auto max-w-3xl">
               <h1 className="font-serif text-3xl font-semibold leading-tight sm:text-4xl lg:text-5xl">
                 {post.title}
               </h1>
@@ -188,7 +187,7 @@ export default async function BlogPostPage({
               {/* Footer CTA */}
               <div className="mt-12 flex flex-col items-center gap-4 border-t pt-8 sm:flex-row sm:justify-between">
                 <Link
-                  href="/#blog"
+                  href="/blog"
                   className="inline-flex items-center gap-2 text-sm font-semibold text-gold hover:text-gold-dark"
                 >
                   <ArrowLeft className="h-4 w-4" />
@@ -205,11 +204,6 @@ export default async function BlogPostPage({
                 </a>
               </div>
             </article>
-
-            {/* Sidebar */}
-            <div className="mt-12 lg:mt-0">
-              <BlogSidebar currentSlug={slug} />
-            </div>
           </div>
         </div>
       </main>

@@ -1,7 +1,8 @@
 {
   "permissions": {
     "allow": [
-      "Bash(cd /home/singshiv90/projects/shiva && npm run dev)"
+      "Bash(cd /home/singshiv90/projects/shiva && npm run dev)",
+      "Bash(ls -la /home/singshiv90/projects/shiva/app/blog/[slug]/)"
     ]
   }
 }
