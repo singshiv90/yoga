@@ -35,11 +35,12 @@ export function Marquee({
     <div
       className={`overflow-hidden ${className ?? ""}`}
       style={{
-        maskImage:
-          "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
         WebkitMaskImage:
           "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
+        maskImage:
+          "linear-gradient(to right, transparent, black 10%, black 90%, transparent)",
         touchAction: "pan-y",
+        WebkitTransform: "translate3d(0,0,0)",
       }}
       onMouseEnter={pause}
       onMouseLeave={resume}
@@ -50,10 +51,8 @@ export function Marquee({
         ref={trackRef}
         className="marquee-track flex w-max gap-6"
         style={{
+          WebkitAnimation: `marquee-scroll ${speed}s linear infinite`,
           animation: `marquee-scroll ${speed}s linear infinite`,
-          willChange: "transform",
-          WebkitTransform: "translateZ(0)",
-          transform: "translateZ(0)",
         }}
       >
         {children}

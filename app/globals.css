@@ -286,8 +286,16 @@
 
   /* Marquee — pure CSS infinite scroll (compositor thread) */
   @keyframes marquee-scroll {
-    from { transform: translateX(0); }
-    to { transform: translateX(-50%); }
+    0%   { -webkit-transform: translateX(0); transform: translateX(0); }
+    100% { -webkit-transform: translateX(-50%); transform: translateX(-50%); }
+  }
+
+  .marquee-track {
+    -webkit-animation-name: marquee-scroll;
+    -webkit-animation-timing-function: linear;
+    -webkit-animation-iteration-count: infinite;
+    -webkit-backface-visibility: hidden;
+    backface-visibility: hidden;
   }
 
   /* Honour reduced-motion preferences */
