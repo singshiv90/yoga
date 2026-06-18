@@ -14,6 +14,9 @@ import {
   Leaf,
   MessageCircle,
   Phone,
+  Award,
+  Crown,
+  Medal,
   Shield,
   Sparkles,
   Star,
@@ -88,10 +91,8 @@ export const classSchedule = {
   days: "Monday to Friday",
   platform: "Live via Zoom",
   slots: [
-    { time: "6:00 – 7:00 AM", label: "Early Morning Batch" },
-    { time: "7:00 – 8:00 AM", label: "Morning Batch" },
-    { time: "8:00 – 9:00 AM", label: "Mid-Morning Batch" },
-    { time: "5:00 – 6:00 PM", label: "Evening Batch" },
+    { time: "9:00 – 10:00 AM", label: "Morning Batch" },
+    { time: "6:00 – 7:00 PM", label: "Evening Batch" },
   ] as TimeSlot[],
 };
 
@@ -107,6 +108,7 @@ export interface PricingPlan {
   popular: boolean;
   savings?: string;
   features: string[];
+  icon: LucideIcon;
 }
 
 export const pricingPlans: PricingPlan[] = [
@@ -114,7 +116,8 @@ export const pricingPlans: PricingPlan[] = [
     name: "Silver Membership",
     label: "Silver",
     tagline: "Short-term trial for beginners",
-    price: "₹1,200",
+    icon: Medal,
+    price: "₹1,500",
     period: "/month",
     popular: false,
     features: [
@@ -129,10 +132,11 @@ export const pricingPlans: PricingPlan[] = [
     name: "Gold Membership",
     label: "Gold",
     tagline: "Ideal for advanced trainers",
-    price: "₹3,000",
+    icon: Award,
+    price: "₹4,000",
     period: "/3 months",
     popular: true,
-    savings: "Save ₹600",
+    savings: "Save ₹500",
     features: [
       "All live group classes",
       "Monday to Friday access",
@@ -145,6 +149,7 @@ export const pricingPlans: PricingPlan[] = [
     name: "Platinum Membership",
     label: "Platinum",
     tagline: "Personal trainer",
+    icon: Crown,
     price: "₹3,000",
     period: "/month",
     popular: false,

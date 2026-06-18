@@ -159,7 +159,10 @@ export function Pricing() {
                   </span>
                 )}
 
-                <h3 className="text-lg font-semibold">{plan.name}</h3>
+                <h3 className="flex items-center gap-2 text-lg font-semibold">
+                  <plan.icon className="h-5 w-5 text-gold" aria-hidden />
+                  {plan.name}
+                </h3>
                 <p className="mt-1 text-sm text-muted">{plan.tagline}</p>
 
                 <div className="mt-4 flex items-baseline gap-1">
