@@ -85,7 +85,7 @@ export interface TimeSlot {
 }
 
 export const classSchedule = {
-  days: "Monday to Saturday",
+  days: "Monday to Friday",
   platform: "Live via Zoom",
   slots: [
     { time: "6:00 – 7:00 AM", label: "Early Morning Batch" },

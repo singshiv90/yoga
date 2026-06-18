@@ -284,19 +284,6 @@
       transform 0.6s cubic-bezier(0.22, 1, 0.36, 1);
   }
 
-  /* Marquee — pure CSS infinite scroll (compositor thread) */
-  @keyframes marquee-scroll {
-    0%   { -webkit-transform: translateX(0); transform: translateX(0); }
-    100% { -webkit-transform: translateX(-50%); transform: translateX(-50%); }
-  }
-
-  .marquee-track {
-    -webkit-animation-name: marquee-scroll;
-    -webkit-animation-timing-function: linear;
-    -webkit-animation-iteration-count: infinite;
-    -webkit-backface-visibility: hidden;
-    backface-visibility: hidden;
-  }
 
   /* Honour reduced-motion preferences */
   @media (prefers-reduced-motion: reduce) {
