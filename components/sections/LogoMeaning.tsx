@@ -1,32 +1,16 @@
 "use client";
 
-import { useRef, useState, useCallback, useEffect } from "react";
+import React, { useRef, useState, useCallback, useEffect } from "react";
 import Image from "next/image";
-import {
-  motion,
-  useScroll,
-  useTransform,
-  useMotionValueEvent,
-} from "framer-motion";
+import { useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { logoSymbols } from "@/lib/logo-symbols-data";
 import { cn } from "@/lib/utils";
 
 /* ------------------------------------------------------------------ */
-/*  Shared style: force GPU layer on iOS Safari                        */
+/*  Hotspot dot — pure CSS, always in DOM                              */
 /* ------------------------------------------------------------------ */
-const GPU_LAYER: React.CSSProperties = {
-  WebkitBackfaceVisibility: "hidden",
-  backfaceVisibility: "hidden",
-  transform: "translateZ(0)",
-};
-
-/* ------------------------------------------------------------------ */
-/*  Hotspot dot — always mounted, animated with Framer Motion          */
-/* ------------------------------------------------------------------ */
-const SPRING = { type: "spring" as const, stiffness: 260, damping: 22 };
-
-function Hotspot({
+const Hotspot = React.memo(function Hotspot({
   x,
   y,
   isActive,
@@ -40,34 +24,38 @@ function Hotspot({
   onClick: () => void;
 }) {
   return (
-    <motion.button
+    <button
       onClick={onClick}
-      className="absolute z-20 -translate-x-1/2 -translate-y-1/2"
-      style={{ left: `${x}%`, top: `${y}%`, ...GPU_LAYER }}
-      animate={{
-        scale: isActive ? 1 : 0.55,
-        opacity: isActive ? 1 : 0.4,
+      className={cn(
+        "absolute z-20 -translate-x-1/2 -translate-y-1/2",
+        "transition-[transform,opacity] duration-500 ease-out",
+      )}
+      style={{
+        left: `${x}%`,
+        top: `${y}%`,
+        opacity: isActive ? 1 : 0.35,
+        transform: `translate(-50%,-50%) scale(${isActive ? 1 : 0.55})`,
       }}
-      transition={SPRING}
       aria-label={`Show symbol: ${logoSymbols[index].title}`}
     >
-      {/* Pulse ring — always in DOM, toggled via opacity */}
-      <motion.span
-        className="absolute -inset-3 rounded-full border-2 border-gold/60 animate-pulse-ring"
-        animate={{ opacity: isActive ? 1 : 0 }}
-        transition={{ duration: 0.35 }}
-        style={GPU_LAYER}
+      {/* Pulse ring */}
+      <span
+        className={cn(
+          "absolute -inset-3 rounded-full border-2 border-gold/60",
+          "transition-opacity duration-400",
+          isActive ? "opacity-100 animate-pulse-ring" : "opacity-0",
+        )}
         aria-hidden="true"
       />
-      {/* Glow halo */}
-      <motion.span
-        className="absolute -inset-2 rounded-full animate-glow-pulse"
-        animate={{ opacity: isActive ? 1 : 0 }}
-        transition={{ duration: 0.35 }}
-        style={GPU_LAYER}
+      {/* Glow */}
+      <span
+        className={cn(
+          "absolute -inset-2 rounded-full transition-opacity duration-400",
+          isActive ? "opacity-100 animate-glow-pulse" : "opacity-0",
+        )}
         aria-hidden="true"
       />
-      {/* Core dot */}
+      {/* Dot */}
       <span
         className={cn(
           "relative block h-5 w-5 rounded-full border-2 transition-all duration-300",
@@ -75,24 +63,21 @@ function Hotspot({
             ? "border-gold bg-gold shadow-[0_0_18px_6px_rgba(201,162,75,0.5)]"
             : "border-gold/60 bg-gold/25",
         )}
-        style={GPU_LAYER}
       >
-        <motion.span
-          className="absolute inset-1 rounded-full bg-white/70"
-          animate={{ opacity: isActive ? 1 : 0 }}
-          transition={{ duration: 0.25 }}
-          style={GPU_LAYER}
+        <span
+          className="absolute inset-1 rounded-full bg-white/70 transition-opacity duration-300"
+          style={{ opacity: isActive ? 1 : 0 }}
           aria-hidden="true"
         />
       </span>
-    </motion.button>
+    </button>
   );
-}
+});
 
 /* ------------------------------------------------------------------ */
-/*  Progress dots                                                      */
+/*  Progress dots — pure CSS                                           */
 /* ------------------------------------------------------------------ */
-function ProgressDots({
+const ProgressDots = React.memo(function ProgressDots({
   count,
   activeIndex,
   onDotClick,
@@ -114,46 +99,48 @@ function ProgressDots({
           aria-label={`Go to ${logoSymbols[i].title}`}
           aria-current={i === activeIndex ? "step" : undefined}
         >
-          <motion.span
-            className="block rounded-full"
-            animate={{
+          <span
+            className="block rounded-full transition-all duration-300 ease-out"
+            style={{
               width: i === activeIndex ? 10 : 6,
               height: i === activeIndex ? 10 : 6,
               backgroundColor:
-                i === activeIndex ? "rgb(201,162,75)" : "rgba(201,162,75,0.3)",
+                i === activeIndex
+                  ? "rgb(201,162,75)"
+                  : "rgba(201,162,75,0.3)",
             }}
-            transition={SPRING}
           />
         </button>
       ))}
     </nav>
   );
-}
+});
 
 /* ------------------------------------------------------------------ */
-/*  Text panel — all panels always mounted (no AnimatePresence)        */
-/*  Uses Framer Motion animate on each panel — iOS safe                */
+/*  Text panel — all 6 always mounted, cross-fade via CSS only         */
 /* ------------------------------------------------------------------ */
-const EASE = [0.22, 1, 0.36, 1] as const;
-
-function TextPanel({ activeIndex }: { activeIndex: number }) {
+const TextPanel = React.memo(function TextPanel({
+  activeIndex,
+}: {
+  activeIndex: number;
+}) {
   return (
     <div className="relative">
       {logoSymbols.map((symbol, i) => {
         const isActive = i === activeIndex;
         return (
-          <motion.div
+          <div
             key={symbol.id}
             className={cn(
-              "flex flex-col",
-              isActive ? "relative" : "pointer-events-none absolute inset-0",
+              "flex flex-col transition-[opacity,transform] duration-500 ease-out",
+              isActive
+                ? "relative"
+                : "pointer-events-none absolute inset-0",
             )}
-            animate={{
+            style={{
               opacity: isActive ? 1 : 0,
-              y: isActive ? 0 : 14,
+              transform: isActive ? "translateY(0)" : "translateY(14px)",
             }}
-            transition={{ duration: 0.5, ease: EASE }}
-            style={GPU_LAYER}
             aria-hidden={!isActive}
           >
             {/* Symbol image */}
@@ -186,12 +173,12 @@ function TextPanel({ activeIndex }: { activeIndex: number }) {
             <p className="mt-4 max-w-md text-base leading-relaxed text-muted">
               {symbol.description}
             </p>
-          </motion.div>
+          </div>
         );
       })}
     </div>
   );
-}
+});
 
 /* ------------------------------------------------------------------ */
 /*  Main component                                                     */
@@ -199,10 +186,11 @@ function TextPanel({ activeIndex }: { activeIndex: number }) {
 export function LogoMeaning() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const activeIndexRef = useRef(0);
   const scrollingToRef = useRef<number | null>(null);
   const scrollTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
-  /* Scroll → active index mapping */
+  /* Scroll → active index with hysteresis to prevent boundary flicker */
   const { scrollYProgress } = useScroll({
     target: containerRef,
     offset: ["start start", "end end"],
@@ -215,14 +203,29 @@ export function LogoMeaning() {
   );
 
   useMotionValueEvent(activeFloat, "change", (v) => {
-    const clamped = Math.max(0, Math.min(logoSymbols.length - 1, Math.round(v)));
-    // Skip intermediate updates during programmatic scroll
-    if (scrollingToRef.current !== null && clamped !== scrollingToRef.current)
+    // Skip updates during programmatic scroll
+    if (scrollingToRef.current !== null) {
+      if (Math.round(v) === scrollingToRef.current) {
+        scrollingToRef.current = null;
+      }
       return;
-    if (scrollingToRef.current !== null && clamped === scrollingToRef.current) {
-      scrollingToRef.current = null;
     }
-    setActiveIndex(clamped);
+
+    const current = activeIndexRef.current;
+    const rounded = Math.round(v);
+    const clamped = Math.max(0, Math.min(logoSymbols.length - 1, rounded));
+
+    // Hysteresis: require the value to move 0.15 past the midpoint
+    // before switching — prevents rapid oscillation at boundaries
+    if (clamped !== current) {
+      const distFromCurrent = Math.abs(v - current);
+      if (distFromCurrent < 0.65) return;
+    }
+
+    if (clamped !== current) {
+      activeIndexRef.current = clamped;
+      setActiveIndex(clamped);
+    }
   });
 
   /* Click-to-scroll for progress dots / hotspots */
@@ -230,6 +233,7 @@ export function LogoMeaning() {
     const el = containerRef.current;
     if (!el) return;
 
+    activeIndexRef.current = i;
     setActiveIndex(i);
     scrollingToRef.current = i;
     clearTimeout(scrollTimerRef.current);
@@ -247,7 +251,6 @@ export function LogoMeaning() {
     });
   }, []);
 
-  /* Cleanup timer on unmount */
   useEffect(() => {
     return () => clearTimeout(scrollTimerRef.current);
   }, []);
@@ -257,7 +260,7 @@ export function LogoMeaning() {
 
   return (
     <section id="logo-meaning" className="bg-radial-fade">
-      {/* Normal-flow heading — scrolls away naturally */}
+      {/* Normal-flow heading */}
       <div className="section-pad pb-0">
         <div className="container-luxe">
           <SectionHeading
@@ -274,20 +277,16 @@ export function LogoMeaning() {
         </div>
       </div>
 
-      {/* Scroll story container — creates the scroll distance */}
+      {/* Scroll story container */}
       <div
         ref={containerRef}
         className="relative h-[450vh] md:h-[500vh] lg:h-[600vh]"
       >
-        {/* Sticky frame — pins to viewport */}
         <div className="sticky top-0 flex h-screen items-center overflow-hidden">
           <div className="container-luxe w-full">
             <div className="flex flex-col items-center gap-8 lg:flex-row lg:gap-16">
               {/* ---- Logo + Hotspots ---- */}
-              <div
-                className="relative mx-auto w-full max-w-[240px] flex-shrink-0 md:max-w-[320px] lg:max-w-[420px]"
-                style={GPU_LAYER}
-              >
+              <div className="relative mx-auto w-full max-w-[240px] flex-shrink-0 md:max-w-[320px] lg:max-w-[420px]">
                 {/* Ambient glow */}
                 <div
                   className="pointer-events-none absolute inset-0 -z-10 scale-110 rounded-full opacity-20 blur-3xl"
@@ -298,19 +297,16 @@ export function LogoMeaning() {
                   aria-hidden="true"
                 />
 
-                {/* Overall-meaning gold ring — always mounted, toggled via CSS */}
+                {/* Overall gold ring */}
                 <div
                   className="absolute -inset-3 rounded-full border-2 border-gold/50 transition-opacity duration-500"
-                  style={{
-                    opacity: isOverall ? 1 : 0,
-                    ...GPU_LAYER,
-                  }}
+                  style={{ opacity: isOverall ? 1 : 0 }}
                   aria-hidden="true"
                 >
                   <span className="absolute inset-0 rounded-full animate-glow-pulse" />
                 </div>
 
-                {/* Spotlight overlay — dark mode only */}
+                {/* Spotlight — dark mode only */}
                 <div
                   className="pointer-events-none absolute inset-0 z-10 rounded-full transition-all duration-700 hidden dark:block"
                   style={{
@@ -321,11 +317,11 @@ export function LogoMeaning() {
                   aria-hidden="true"
                 />
 
-                {/* Logo wrapper — clips the square PNG to a circle */}
-                <div className="relative overflow-hidden rounded-full" style={GPU_LAYER}>
+                {/* Logo */}
+                <div className="relative overflow-hidden rounded-full">
                   <Image
                     src="/logo.png"
-                    alt="Pranava Yoga emblem — circular logo containing Trishul, Damru, Lotus, Sudarshan Chakra, and Om"
+                    alt="Pranava Yoga emblem"
                     width={840}
                     height={840}
                     priority
@@ -333,7 +329,7 @@ export function LogoMeaning() {
                   />
                 </div>
 
-                {/* Hotspot markers (first 5 symbols only) */}
+                {/* Hotspots */}
                 {logoSymbols.slice(0, -1).map((s, i) => (
                   <Hotspot
                     key={s.id}
@@ -346,14 +342,11 @@ export function LogoMeaning() {
                 ))}
               </div>
 
-              {/* ---- Text panel + Progress dots ---- */}
+              {/* ---- Text + Progress dots ---- */}
               <div className="flex w-full flex-1 items-center gap-6 lg:gap-10">
-                {/* Text */}
                 <div className="min-h-[220px] flex-1">
                   <TextPanel activeIndex={activeIndex} />
                 </div>
-
-                {/* Progress navigation */}
                 <ProgressDots
                   count={logoSymbols.length}
                   activeIndex={activeIndex}
