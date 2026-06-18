@@ -2,25 +2,22 @@
 
 import { useRef, useState, useCallback, useEffect } from "react";
 import Image from "next/image";
-import {
-  motion,
-  AnimatePresence,
-  useScroll,
-  useTransform,
-  useMotionValueEvent,
-} from "framer-motion";
+import { useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { logoSymbols } from "@/lib/logo-symbols-data";
 import { cn } from "@/lib/utils";
 
 /* ------------------------------------------------------------------ */
-/*  Animation constants                                                */
+/*  Shared style: force GPU layer on iOS Safari                        */
 /* ------------------------------------------------------------------ */
-const EASE = [0.22, 1, 0.36, 1] as const;
-const SPRING = { type: "spring" as const, stiffness: 300, damping: 25 };
+const GPU_LAYER: React.CSSProperties = {
+  WebkitBackfaceVisibility: "hidden",
+  backfaceVisibility: "hidden",
+  transform: "translateZ(0)",
+};
 
 /* ------------------------------------------------------------------ */
-/*  Hotspot dot                                                        */
+/*  Hotspot dot — pure CSS transitions, zero DOM mount/unmount         */
 /* ------------------------------------------------------------------ */
 function Hotspot({
   x,
@@ -36,39 +33,31 @@ function Hotspot({
   onClick: () => void;
 }) {
   return (
-    <motion.button
+    <button
       onClick={onClick}
-      className="absolute z-20 -translate-x-1/2 -translate-y-1/2"
+      className="absolute z-20 -translate-x-1/2 -translate-y-1/2 transition-all duration-500 ease-out"
       style={{
         left: `${x}%`,
         top: `${y}%`,
-        WebkitBackfaceVisibility: "hidden",
-        willChange: "transform, opacity",
-      }}
-      animate={{
-        scale: isActive ? 1 : 0.55,
         opacity: isActive ? 1 : 0.4,
+        scale: isActive ? "1" : "0.55",
+        ...GPU_LAYER,
       }}
-      transition={SPRING}
       aria-label={`Show symbol: ${logoSymbols[index].title}`}
     >
-      {/* Pulse ring — always mounted, animated via opacity to avoid iOS reflow */}
+      {/* Pulse ring — always in DOM, toggled via opacity */}
       <span
         className="absolute -inset-3 rounded-full border-2 border-gold/60 animate-pulse-ring"
-        style={{
-          opacity: isActive ? 1 : 0,
-          transition: "opacity 0.3s",
-          WebkitBackfaceVisibility: "hidden",
-        }}
+        style={{ opacity: isActive ? 1 : 0, transition: "opacity 0.4s", ...GPU_LAYER }}
         aria-hidden="true"
       />
-      {/* Glow halo — CSS animation instead of Framer boxShadow keyframes */}
+      {/* Glow halo — CSS animation class, toggled via opacity */}
       <span
         className={cn(
-          "absolute -inset-2 rounded-full transition-opacity duration-300",
-          isActive ? "opacity-100 animate-glow-pulse" : "opacity-0",
+          "absolute -inset-2 rounded-full",
+          isActive && "animate-glow-pulse",
         )}
-        style={{ WebkitBackfaceVisibility: "hidden" }}
+        style={{ opacity: isActive ? 1 : 0, transition: "opacity 0.4s", ...GPU_LAYER }}
         aria-hidden="true"
       />
       {/* Core dot */}
@@ -79,21 +68,21 @@ function Hotspot({
             ? "border-gold bg-gold shadow-[0_0_18px_6px_rgba(201,162,75,0.5)]"
             : "border-gold/60 bg-gold/25",
         )}
-        style={{ WebkitBackfaceVisibility: "hidden" }}
+        style={GPU_LAYER}
       >
-        {/* Inner bright center — always mounted, toggled via opacity */}
+        {/* Inner bright center — always in DOM */}
         <span
-          className="absolute inset-1 rounded-full bg-white/70 transition-opacity duration-300"
-          style={{ opacity: isActive ? 1 : 0 }}
+          className="absolute inset-1 rounded-full bg-white/70"
+          style={{ opacity: isActive ? 1 : 0, transition: "opacity 0.3s", ...GPU_LAYER }}
           aria-hidden="true"
         />
       </span>
-    </motion.button>
+    </button>
   );
 }
 
 /* ------------------------------------------------------------------ */
-/*  Progress dots (navigation)                                         */
+/*  Progress dots — pure CSS transitions                               */
 /* ------------------------------------------------------------------ */
 function ProgressDots({
   count,
@@ -117,15 +106,14 @@ function ProgressDots({
           aria-label={`Go to ${logoSymbols[i].title}`}
           aria-current={i === activeIndex ? "step" : undefined}
         >
-          <motion.span
-            className="block rounded-full"
-            animate={{
+          <span
+            className="block rounded-full transition-all duration-300"
+            style={{
               width: i === activeIndex ? 10 : 6,
               height: i === activeIndex ? 10 : 6,
               backgroundColor:
                 i === activeIndex ? "rgb(201,162,75)" : "rgba(201,162,75,0.3)",
             }}
-            transition={SPRING}
           />
         </button>
       ))}
@@ -134,54 +122,58 @@ function ProgressDots({
 }
 
 /* ------------------------------------------------------------------ */
-/*  Text panel (AnimatePresence)                                       */
+/*  Text panel — all panels always mounted, cross-fade via CSS         */
+/*  No AnimatePresence = no DOM mount/unmount = no iOS flicker         */
 /* ------------------------------------------------------------------ */
 function TextPanel({ activeIndex }: { activeIndex: number }) {
-  const symbol = logoSymbols[activeIndex];
-  const Icon = symbol.icon;
-
   return (
-    <AnimatePresence mode="wait">
-      <motion.div
-        key={symbol.id}
-        initial={{ opacity: 0, y: 24 }}
-        animate={{ opacity: 1, y: 0 }}
-        exit={{ opacity: 0, y: -16 }}
-        transition={{
-          duration: 0.45,
-          ease: EASE,
-          exit: { duration: 0.25 },
-        }}
-        className="flex flex-col"
-        style={{
-          WebkitBackfaceVisibility: "hidden",
-          willChange: "transform, opacity",
-        }}
-      >
-        {/* Icon badge */}
-        <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-gold/30 bg-gold/10">
-          <Icon className="h-6 w-6 text-gold" />
-        </div>
+    <div className="relative">
+      {logoSymbols.map((symbol, i) => {
+        const Icon = symbol.icon;
+        const isActive = i === activeIndex;
+        return (
+          <div
+            key={symbol.id}
+            className={cn(
+              "flex flex-col transition-all duration-500 ease-out",
+              isActive
+                ? "relative opacity-100"
+                : "pointer-events-none absolute inset-0 opacity-0",
+            )}
+            style={{
+              transform: isActive ? "translateY(0)" : "translateY(12px)",
+              ...GPU_LAYER,
+            }}
+            aria-hidden={!isActive}
+          >
+            {/* Icon badge */}
+            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-gold/30 bg-gold/10">
+              <Icon className="h-6 w-6 text-gold" />
+            </div>
 
-        {/* Counter */}
-        <span className="mb-2 text-xs font-semibold uppercase tracking-luxe text-gold/70">
-          {activeIndex + 1} / {logoSymbols.length}
-        </span>
+            {/* Counter */}
+            <span className="mb-2 text-xs font-semibold uppercase tracking-luxe text-gold/70">
+              {i + 1} / {logoSymbols.length}
+            </span>
 
-        {/* Title */}
-        <h3 className="font-serif text-2xl font-semibold sm:text-3xl">
-          {symbol.title}
-        </h3>
+            {/* Title */}
+            <h3 className="font-serif text-2xl font-semibold sm:text-3xl">
+              {symbol.title}
+            </h3>
 
-        {/* Subtitle */}
-        <p className="mt-1 text-sm font-medium text-gold">{symbol.subtitle}</p>
+            {/* Subtitle */}
+            <p className="mt-1 text-sm font-medium text-gold">
+              {symbol.subtitle}
+            </p>
 
-        {/* Description */}
-        <p className="mt-4 max-w-md text-base leading-relaxed text-muted">
-          {symbol.description}
-        </p>
-      </motion.div>
-    </AnimatePresence>
+            {/* Description */}
+            <p className="mt-4 max-w-md text-base leading-relaxed text-muted">
+              {symbol.description}
+            </p>
+          </div>
+        );
+      })}
+    </div>
   );
 }
 
@@ -208,8 +200,9 @@ export function LogoMeaning() {
 
   useMotionValueEvent(activeFloat, "change", (v) => {
     const clamped = Math.max(0, Math.min(logoSymbols.length - 1, Math.round(v)));
-    // Skip intermediate updates during programmatic scroll — prevents text blink
-    if (scrollingToRef.current !== null && clamped !== scrollingToRef.current) return;
+    // Skip intermediate updates during programmatic scroll
+    if (scrollingToRef.current !== null && clamped !== scrollingToRef.current)
+      return;
     if (scrollingToRef.current !== null && clamped === scrollingToRef.current) {
       scrollingToRef.current = null;
     }
@@ -217,31 +210,26 @@ export function LogoMeaning() {
   });
 
   /* Click-to-scroll for progress dots / hotspots */
-  const scrollToIndex = useCallback(
-    (i: number) => {
-      const el = containerRef.current;
-      if (!el) return;
+  const scrollToIndex = useCallback((i: number) => {
+    const el = containerRef.current;
+    if (!el) return;
 
-      // Set target index immediately and lock scroll updates
-      setActiveIndex(i);
-      scrollingToRef.current = i;
-      clearTimeout(scrollTimerRef.current);
-      // Safety fallback: unlock after scroll should have finished
-      scrollTimerRef.current = setTimeout(() => {
-        scrollingToRef.current = null;
-      }, 1200);
+    setActiveIndex(i);
+    scrollingToRef.current = i;
+    clearTimeout(scrollTimerRef.current);
+    scrollTimerRef.current = setTimeout(() => {
+      scrollingToRef.current = null;
+    }, 1200);
 
-      const rect = el.getBoundingClientRect();
-      const containerTop = window.scrollY + rect.top;
-      const scrollableHeight = el.scrollHeight - window.innerHeight;
-      const fraction = i / (logoSymbols.length - 1);
-      window.scrollTo({
-        top: containerTop + scrollableHeight * fraction,
-        behavior: "smooth",
-      });
-    },
-    [],
-  );
+    const rect = el.getBoundingClientRect();
+    const containerTop = window.scrollY + rect.top;
+    const scrollableHeight = el.scrollHeight - window.innerHeight;
+    const fraction = i / (logoSymbols.length - 1);
+    window.scrollTo({
+      top: containerTop + scrollableHeight * fraction,
+      behavior: "smooth",
+    });
+  }, []);
 
   /* Cleanup timer on unmount */
   useEffect(() => {
@@ -280,7 +268,10 @@ export function LogoMeaning() {
           <div className="container-luxe w-full">
             <div className="flex flex-col items-center gap-8 lg:flex-row lg:gap-16">
               {/* ---- Logo + Hotspots ---- */}
-              <div className="relative mx-auto w-full max-w-[240px] flex-shrink-0 md:max-w-[320px] lg:max-w-[420px]">
+              <div
+                className="relative mx-auto w-full max-w-[240px] flex-shrink-0 md:max-w-[320px] lg:max-w-[420px]"
+                style={GPU_LAYER}
+              >
                 {/* Ambient glow */}
                 <div
                   className="pointer-events-none absolute inset-0 -z-10 scale-110 rounded-full opacity-20 blur-3xl"
@@ -291,23 +282,21 @@ export function LogoMeaning() {
                   aria-hidden="true"
                 />
 
-                {/* Overall-meaning gold ring */}
-                <AnimatePresence>
-                  {isOverall && (
-                    <motion.div
-                      initial={{ opacity: 0, scale: 0.92 }}
-                      animate={{ opacity: 1, scale: 1 }}
-                      exit={{ opacity: 0, scale: 0.92 }}
-                      transition={{ duration: 0.6, ease: EASE }}
-                      className="absolute -inset-3 rounded-full border-2 border-gold/50 animate-glow-pulse"
-                      aria-hidden="true"
-                    />
-                  )}
-                </AnimatePresence>
-
-                {/* Spotlight overlay — subtle highlight on active area (dark mode only) */}
+                {/* Overall-meaning gold ring — always mounted, toggled via CSS */}
                 <div
-                  className="pointer-events-none absolute inset-0 z-10 rounded-full transition-all duration-700 dark:block hidden"
+                  className="absolute -inset-3 rounded-full border-2 border-gold/50 transition-opacity duration-500"
+                  style={{
+                    opacity: isOverall ? 1 : 0,
+                    ...GPU_LAYER,
+                  }}
+                  aria-hidden="true"
+                >
+                  <span className="absolute inset-0 rounded-full animate-glow-pulse" />
+                </div>
+
+                {/* Spotlight overlay — dark mode only */}
+                <div
+                  className="pointer-events-none absolute inset-0 z-10 rounded-full transition-all duration-700 hidden dark:block"
                   style={{
                     background: isOverall
                       ? "none"
@@ -316,8 +305,8 @@ export function LogoMeaning() {
                   aria-hidden="true"
                 />
 
-                {/* Logo wrapper — clips the square PNG to a circle, hiding white edges */}
-                <div className="relative overflow-hidden rounded-full">
+                {/* Logo wrapper — clips the square PNG to a circle */}
+                <div className="relative overflow-hidden rounded-full" style={GPU_LAYER}>
                   <Image
                     src="/logo.png"
                     alt="Pranava Yoga emblem — circular logo containing Trishul, Damru, Lotus, Sudarshan Chakra, and Om"
