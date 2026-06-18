@@ -1,6 +1,6 @@
 "use client";
 
-import { useRef, useState, useCallback } from "react";
+import { useRef, useState, useCallback, useEffect } from "react";
 import Image from "next/image";
 import {
   motion,
@@ -197,6 +197,8 @@ function TextPanel({ activeIndex }: { activeIndex: number }) {
 export function LogoMeaning() {
   const containerRef = useRef<HTMLDivElement>(null);
   const [activeIndex, setActiveIndex] = useState(0);
+  const scrollingToRef = useRef<number | null>(null);
+  const scrollTimerRef = useRef<ReturnType<typeof setTimeout>>(undefined);
 
   /* Scroll → active index mapping */
   const { scrollYProgress } = useScroll({
@@ -212,14 +214,29 @@ export function LogoMeaning() {
 
   useMotionValueEvent(activeFloat, "change", (v) => {
     const clamped = Math.max(0, Math.min(logoSymbols.length - 1, Math.round(v)));
+    // Skip intermediate updates during programmatic scroll — prevents text blink
+    if (scrollingToRef.current !== null && clamped !== scrollingToRef.current) return;
+    if (scrollingToRef.current !== null && clamped === scrollingToRef.current) {
+      scrollingToRef.current = null;
+    }
     setActiveIndex(clamped);
   });
 
-  /* Click-to-scroll for progress dots */
+  /* Click-to-scroll for progress dots / hotspots */
   const scrollToIndex = useCallback(
     (i: number) => {
       const el = containerRef.current;
       if (!el) return;
+
+      // Set target index immediately and lock scroll updates
+      setActiveIndex(i);
+      scrollingToRef.current = i;
+      clearTimeout(scrollTimerRef.current);
+      // Safety fallback: unlock after scroll should have finished
+      scrollTimerRef.current = setTimeout(() => {
+        scrollingToRef.current = null;
+      }, 1200);
+
       const rect = el.getBoundingClientRect();
       const containerTop = window.scrollY + rect.top;
       const scrollableHeight = el.scrollHeight - window.innerHeight;
@@ -231,6 +248,11 @@ export function LogoMeaning() {
     },
     [],
   );
+
+  /* Cleanup timer on unmount */
+  useEffect(() => {
+    return () => clearTimeout(scrollTimerRef.current);
+  }, []);
 
   const isOverall = activeIndex === logoSymbols.length - 1;
   const activeHotspot = logoSymbols[activeIndex].hotspot;
