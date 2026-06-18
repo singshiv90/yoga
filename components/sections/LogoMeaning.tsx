@@ -2,7 +2,12 @@
 
 import { useRef, useState, useCallback, useEffect } from "react";
 import Image from "next/image";
-import { useScroll, useTransform, useMotionValueEvent } from "framer-motion";
+import {
+  motion,
+  useScroll,
+  useTransform,
+  useMotionValueEvent,
+} from "framer-motion";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { logoSymbols } from "@/lib/logo-symbols-data";
 import { cn } from "@/lib/utils";
@@ -17,8 +22,10 @@ const GPU_LAYER: React.CSSProperties = {
 };
 
 /* ------------------------------------------------------------------ */
-/*  Hotspot dot — pure CSS transitions, zero DOM mount/unmount         */
+/*  Hotspot dot — always mounted, animated with Framer Motion          */
 /* ------------------------------------------------------------------ */
+const SPRING = { type: "spring" as const, stiffness: 260, damping: 22 };
+
 function Hotspot({
   x,
   y,
@@ -33,31 +40,31 @@ function Hotspot({
   onClick: () => void;
 }) {
   return (
-    <button
+    <motion.button
       onClick={onClick}
-      className="absolute z-20 -translate-x-1/2 -translate-y-1/2 transition-all duration-500 ease-out"
-      style={{
-        left: `${x}%`,
-        top: `${y}%`,
+      className="absolute z-20 -translate-x-1/2 -translate-y-1/2"
+      style={{ left: `${x}%`, top: `${y}%`, ...GPU_LAYER }}
+      animate={{
+        scale: isActive ? 1 : 0.55,
         opacity: isActive ? 1 : 0.4,
-        scale: isActive ? "1" : "0.55",
-        ...GPU_LAYER,
       }}
+      transition={SPRING}
       aria-label={`Show symbol: ${logoSymbols[index].title}`}
     >
       {/* Pulse ring — always in DOM, toggled via opacity */}
-      <span
+      <motion.span
         className="absolute -inset-3 rounded-full border-2 border-gold/60 animate-pulse-ring"
-        style={{ opacity: isActive ? 1 : 0, transition: "opacity 0.4s", ...GPU_LAYER }}
+        animate={{ opacity: isActive ? 1 : 0 }}
+        transition={{ duration: 0.35 }}
+        style={GPU_LAYER}
         aria-hidden="true"
       />
-      {/* Glow halo — CSS animation class, toggled via opacity */}
-      <span
-        className={cn(
-          "absolute -inset-2 rounded-full",
-          isActive && "animate-glow-pulse",
-        )}
-        style={{ opacity: isActive ? 1 : 0, transition: "opacity 0.4s", ...GPU_LAYER }}
+      {/* Glow halo */}
+      <motion.span
+        className="absolute -inset-2 rounded-full animate-glow-pulse"
+        animate={{ opacity: isActive ? 1 : 0 }}
+        transition={{ duration: 0.35 }}
+        style={GPU_LAYER}
         aria-hidden="true"
       />
       {/* Core dot */}
@@ -70,19 +77,20 @@ function Hotspot({
         )}
         style={GPU_LAYER}
       >
-        {/* Inner bright center — always in DOM */}
-        <span
+        <motion.span
           className="absolute inset-1 rounded-full bg-white/70"
-          style={{ opacity: isActive ? 1 : 0, transition: "opacity 0.3s", ...GPU_LAYER }}
+          animate={{ opacity: isActive ? 1 : 0 }}
+          transition={{ duration: 0.25 }}
+          style={GPU_LAYER}
           aria-hidden="true"
         />
       </span>
-    </button>
+    </motion.button>
   );
 }
 
 /* ------------------------------------------------------------------ */
-/*  Progress dots — pure CSS transitions                               */
+/*  Progress dots                                                      */
 /* ------------------------------------------------------------------ */
 function ProgressDots({
   count,
@@ -106,14 +114,15 @@ function ProgressDots({
           aria-label={`Go to ${logoSymbols[i].title}`}
           aria-current={i === activeIndex ? "step" : undefined}
         >
-          <span
-            className="block rounded-full transition-all duration-300"
-            style={{
+          <motion.span
+            className="block rounded-full"
+            animate={{
               width: i === activeIndex ? 10 : 6,
               height: i === activeIndex ? 10 : 6,
               backgroundColor:
                 i === activeIndex ? "rgb(201,162,75)" : "rgba(201,162,75,0.3)",
             }}
+            transition={SPRING}
           />
         </button>
       ))}
@@ -122,33 +131,40 @@ function ProgressDots({
 }
 
 /* ------------------------------------------------------------------ */
-/*  Text panel — all panels always mounted, cross-fade via CSS         */
-/*  No AnimatePresence = no DOM mount/unmount = no iOS flicker         */
+/*  Text panel — all panels always mounted (no AnimatePresence)        */
+/*  Uses Framer Motion animate on each panel — iOS safe                */
 /* ------------------------------------------------------------------ */
+const EASE = [0.22, 1, 0.36, 1] as const;
+
 function TextPanel({ activeIndex }: { activeIndex: number }) {
   return (
     <div className="relative">
       {logoSymbols.map((symbol, i) => {
-        const Icon = symbol.icon;
         const isActive = i === activeIndex;
         return (
-          <div
+          <motion.div
             key={symbol.id}
             className={cn(
-              "flex flex-col transition-all duration-500 ease-out",
-              isActive
-                ? "relative opacity-100"
-                : "pointer-events-none absolute inset-0 opacity-0",
+              "flex flex-col",
+              isActive ? "relative" : "pointer-events-none absolute inset-0",
             )}
-            style={{
-              transform: isActive ? "translateY(0)" : "translateY(12px)",
-              ...GPU_LAYER,
+            animate={{
+              opacity: isActive ? 1 : 0,
+              y: isActive ? 0 : 14,
             }}
+            transition={{ duration: 0.5, ease: EASE }}
+            style={GPU_LAYER}
             aria-hidden={!isActive}
           >
-            {/* Icon badge */}
-            <div className="mb-4 flex h-12 w-12 items-center justify-center rounded-xl border border-gold/30 bg-gold/10">
-              <Icon className="h-6 w-6 text-gold" />
+            {/* Symbol image */}
+            <div className="mb-4 flex h-14 w-14 items-center justify-center overflow-hidden rounded-full border border-gold/30 bg-ink shadow-[0_0_12px_rgba(201,162,75,0.2)]">
+              <Image
+                src={symbol.image}
+                alt={symbol.title}
+                width={112}
+                height={112}
+                className="h-[80%] w-[80%] object-contain"
+              />
             </div>
 
             {/* Counter */}
@@ -170,7 +186,7 @@ function TextPanel({ activeIndex }: { activeIndex: number }) {
             <p className="mt-4 max-w-md text-base leading-relaxed text-muted">
               {symbol.description}
             </p>
-          </div>
+          </motion.div>
         );
       })}
     </div>

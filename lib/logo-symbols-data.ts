@@ -15,6 +15,7 @@ export interface LogoSymbol {
   description: string;
   hotspot: { x: number; y: number };
   icon: LucideIcon;
+  image: string;
 }
 
 export const logoSymbols: LogoSymbol[] = [
@@ -26,6 +27,7 @@ export const logoSymbols: LogoSymbol[] = [
       "The trident represents the three fundamental powers — will (iccha), knowledge (jnana), and action (kriya). Together they symbolise mastery over the physical, mental, and spiritual realms.",
     hotspot: { x: 50, y: 24 },
     icon: Flame,
+    image: "/trishul.png",
   },
   {
     id: "damru",
@@ -35,6 +37,7 @@ export const logoSymbols: LogoSymbol[] = [
       "Shiva's drum beats the primordial rhythm of creation. Its sound, Nada Brahma, is the vibration from which the entire universe emerged — a reminder that all existence begins with sacred sound.",
     hotspot: { x: 50, y: 34 },
     icon: Drum,
+    image: "/damru.png",
   },
   {
     id: "lotus",
@@ -44,6 +47,7 @@ export const logoSymbols: LogoSymbol[] = [
       "Rising unblemished from muddy waters, the lotus embodies spiritual purity and the soul's journey toward enlightenment — beauty born from life's challenges.",
     hotspot: { x: 32, y: 58 },
     icon: Flower2,
+    image: "/lotus.png",
   },
   {
     id: "chakra",
@@ -53,6 +57,7 @@ export const logoSymbols: LogoSymbol[] = [
       "Vishnu's spinning disc of divine protection stands for the upholding of dharma — cosmic order, righteousness, and the unwavering defence of truth.",
     hotspot: { x: 68, y: 42 },
     icon: Shield,
+    image: "/sudarshan.png",
   },
   {
     id: "om",
@@ -62,6 +67,7 @@ export const logoSymbols: LogoSymbol[] = [
       "Om is the primordial sound that pervades all of creation. Chanted at the heart of every practice, it unites mind, body, and spirit in a single sacred resonance.",
     hotspot: { x: 50, y: 48 },
     icon: AudioWaveform,
+    image: "/om.png",
   },
   {
     id: "overall",
@@ -71,5 +77,6 @@ export const logoSymbols: LogoSymbol[] = [
       "Together, these symbols form a single emblem of transformation — where divine power, cosmic rhythm, purity, protection, and universal vibration converge into the path of yoga.",
     hotspot: { x: 50, y: 50 },
     icon: Sparkles,
+    image: "/logo.png",
   },
 ];
