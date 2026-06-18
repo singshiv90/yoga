@@ -15,11 +15,11 @@ export function PageLoader() {
       }
     } catch {}
 
-    const fadeTimer = setTimeout(() => setFading(true), 5500);
+    const fadeTimer = setTimeout(() => setFading(true), 2200);
     const hideTimer = setTimeout(() => {
       setVisible(false);
       try { sessionStorage.setItem("pranava-loaded", "1"); } catch {}
-    }, 6500);
+    }, 3000);
 
     return () => {
       clearTimeout(fadeTimer);

@@ -31,9 +31,9 @@ export function BackToTop() {
           >
             <ArrowUp className="h-5 w-5" />
           </button>
-          <span className="text-[9px] font-semibold uppercase tracking-widest text-gold">
+          {/* <span className="text-[9px] font-semibold uppercase tracking-widest text-gold">
             Back to top
-          </span>
+          </span> */}
         </motion.div>
       )}
     </AnimatePresence>

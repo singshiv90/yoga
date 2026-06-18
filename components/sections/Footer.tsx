@@ -41,7 +41,7 @@ export function Footer() {
                 width={140}
                 height={140}
                 loading="lazy"
-                className="h-[130px] w-[130px] rounded-full object-contain bg-ink/90 p-1 dark:bg-transparent dark:p-0"
+                className="h-[130px] w-[130px] rounded-full object-contain"
               />
             </Link>
             <p className="mt-4 text-center text-sm leading-relaxed text-muted">

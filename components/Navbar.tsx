@@ -107,7 +107,7 @@ export function Navbar() {
             alt={`${site.name} logo`}
             width={60}
             height={60}
-            className="h-[60px] w-[60px] rounded-full object-contain bg-ink/90 p-0.5 dark:bg-transparent dark:p-0"
+            className="h-[60px] w-[60px] rounded-full object-contain"
           />
         </Link>
 
