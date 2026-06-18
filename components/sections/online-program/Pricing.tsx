@@ -144,7 +144,7 @@ export function Pricing() {
             subtitle="No hidden fees. No long-term lock-in. Start with a free demo, then choose the plan that works for you."
           />
 
-          <StaggerGroup className="mx-auto mt-14 grid max-w-3xl gap-6 sm:grid-cols-2">
+          <StaggerGroup className="mx-auto mt-14 grid max-w-5xl gap-6 sm:grid-cols-2 lg:grid-cols-3">
             {pricingPlans.map((plan) => (
               <div
                 key={plan.name}
@@ -160,6 +160,7 @@ export function Pricing() {
                 )}
 
                 <h3 className="text-lg font-semibold">{plan.name}</h3>
+                <p className="mt-1 text-sm text-muted">{plan.tagline}</p>
 
                 <div className="mt-4 flex items-baseline gap-1">
                   <span

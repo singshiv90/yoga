@@ -100,6 +100,8 @@ export const classSchedule = {
 // ---------------------------------------------------------------------------
 export interface PricingPlan {
   name: string;
+  label: string;
+  tagline: string;
   price: string;
   period: string;
   popular: boolean;
@@ -109,30 +111,49 @@ export interface PricingPlan {
 
 export const pricingPlans: PricingPlan[] = [
   {
-    name: "Monthly",
+    name: "Silver Membership",
+    label: "Silver",
+    tagline: "Short-term trial for beginners",
     price: "₹1,200",
     period: "/month",
     popular: false,
     features: [
       "All live group classes",
-      "Monday to Saturday access",
+      "Monday to Friday access",
       "Yoga + Pranayama + Meditation",
       "Flexible batch timing",
       "WhatsApp support",
     ],
   },
   {
-    name: "Quarterly",
+    name: "Gold Membership",
+    label: "Gold",
+    tagline: "Ideal for advanced trainers",
     price: "₹3,000",
     period: "/3 months",
     popular: true,
     savings: "Save ₹600",
     features: [
       "All live group classes",
-      "Monday to Saturday access",
+      "Monday to Friday access",
       "Yoga + Pranayama + Meditation",
       "Flexible batch timing",
-      "WhatsApp support"
+      "WhatsApp support",
+    ],
+  },
+  {
+    name: "Platinum Membership",
+    label: "Platinum",
+    tagline: "Personal trainer",
+    price: "₹3,000",
+    period: "/month",
+    popular: false,
+    features: [
+      "1-on-1 personal training sessions",
+      "Customised yoga plan",
+      "Monday to Friday access",
+      "Yoga + Pranayama + Meditation",
+      "Priority WhatsApp support",
     ],
   },
 ];
