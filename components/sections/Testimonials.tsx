@@ -8,7 +8,7 @@ import { Marquee } from "@/components/ui/Marquee";
 
 function TestimonialCard({ t }: { t: (typeof testimonials)[number] }) {
   return (
-    <figure className="relative flex h-full w-[340px] shrink-0 flex-col rounded-3xl border bg-elevated p-7 shadow-sm transition-shadow hover:shadow-luxe card-glow-border">
+    <figure className="relative flex h-full w-[280px] shrink-0 flex-col rounded-3xl border bg-elevated p-7 shadow-sm transition-shadow hover:shadow-luxe card-glow-border sm:w-[340px]">
       <span
         className="absolute right-6 top-4 font-serif text-6xl leading-none text-gold/15 select-none"
         aria-hidden

@@ -15,6 +15,18 @@ function resolveHref(href: string, pathname: string) {
   return href;
 }
 
+/** Force scroll to section even when the hash URL hasn't changed. */
+function handleHashClick(
+  e: React.MouseEvent<HTMLAnchorElement>,
+  href: string,
+  pathname: string,
+) {
+  if (!href.startsWith("#") || pathname !== "/") return;
+  e.preventDefault();
+  const el = document.getElementById(href.slice(1));
+  if (el) el.scrollIntoView({ behavior: "smooth" });
+}
+
 export function Footer() {
   const pathname = usePathname();
   const year = new Date().getFullYear();
@@ -104,6 +116,7 @@ export function Footer() {
                 <li key={link.href}>
                   <Link
                     href={resolveHref(link.href, pathname)}
+                    onClick={(e) => handleHashClick(e, link.href, pathname)}
                     className="text-sm text-muted transition-colors hover:text-gold"
                   >
                     {link.label}
@@ -123,6 +136,7 @@ export function Footer() {
                 <li key={s.title}>
                   <Link
                     href={resolveHref("#services", pathname)}
+                    onClick={(e) => handleHashClick(e, "#services", pathname)}
                     className="text-sm text-muted transition-colors hover:text-gold"
                   >
                     {s.title}
