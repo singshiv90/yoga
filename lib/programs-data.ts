@@ -1,5 +1,5 @@
 /**
- * Content data for the Online Yoga Program page.
+ * Content data for the Our Programs page.
  * All copy, pricing, and schedule info in one place.
  */
 
@@ -28,13 +28,13 @@ import {
 // ---------------------------------------------------------------------------
 // Why Join — 7 benefits
 // ---------------------------------------------------------------------------
-export interface OnlineProgramBenefit {
+export interface ProgramBenefit {
   title: string;
   description: string;
   icon: LucideIcon;
 }
 
-export const onlineProgramBenefits: OnlineProgramBenefit[] = [
+export const programBenefits: ProgramBenefit[] = [
   {
     title: "Live Interactive Sessions",
     description:
@@ -42,9 +42,9 @@ export const onlineProgramBenefits: OnlineProgramBenefit[] = [
     icon: Video,
   },
   {
-    title: "Practice From Anywhere",
+    title: "Practice Your Way",
     description:
-      "Join from the comfort of your home, office, or while travelling. All you need is a mat and Wi-Fi.",
+      "Join online from home, office, or while travelling — or visit our studio for an in-person experience.",
     icon: Globe,
   },
   {
@@ -87,13 +87,34 @@ export interface TimeSlot {
   label: string;
 }
 
+export interface ScheduleGroup {
+  title: string;
+  platform: string;
+  slots: TimeSlot[];
+}
+
 export const classSchedule = {
   days: "Monday to Friday",
-  platform: "Live via Zoom",
-  slots: [
-    { time: "9:00 – 10:00 AM", label: "Morning Batch" },
-    { time: "6:00 – 7:00 PM", label: "Evening Batch" },
-  ] as TimeSlot[],
+  groups: [
+    {
+      title: "Online Classes",
+      platform: "Live via Zoom",
+      slots: [
+        { time: "7:00 – 8:00 AM", label: "Morning" },
+        { time: "6:00 – 7:00 PM", label: "Evening" },
+      ],
+    },
+    {
+      title: "Offline Classes",
+      platform: "In-Studio",
+      slots: [
+        { time: "8:00 – 9:00 AM", label: "Morning Batch 1" },
+        { time: "9:00 – 10:00 AM", label: "Morning Batch 2" },
+        { time: "7:00 – 8:00 PM", label: "Evening Batch 1" },
+        { time: "8:00 – 9:00 PM", label: "Evening Batch 2" },
+      ],
+    },
+  ] as ScheduleGroup[],
 };
 
 // ---------------------------------------------------------------------------
@@ -190,9 +211,9 @@ export const enrollmentSteps: EnrollmentStep[] = [
   },
   {
     step: 3,
-    title: "Get Your Zoom Link",
+    title: "Get Your Class Details",
     description:
-      "Receive your private class link and welcome guide on WhatsApp.",
+      "Receive your Zoom link or studio address along with a welcome guide on WhatsApp.",
     icon: MessageCircle,
   },
   {

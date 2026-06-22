@@ -24,7 +24,7 @@ export const logoSymbols: LogoSymbol[] = [
     title: "Trishul",
     subtitle: "The Trident of Shiva",
     description:
-      "The trident represents the three fundamental powers — will (iccha), knowledge (jnana), and action (kriya). Together they symbolise mastery over the physical, mental, and spiritual realms.",
+      "Represents the three powers of Shiva – Iccha Shakti (will power), Gyan Shakti (knowledge), and Kriya Shakti (action). It also symbolizes the past, present, and future and the destruction of negativity and ego.",
     hotspot: { x: 50, y: 24 },
     icon: Flame,
     image: "/trishul.png",
@@ -54,7 +54,7 @@ export const logoSymbols: LogoSymbol[] = [
     title: "Sudarshan Chakra",
     subtitle: "The Divine Disc",
     description:
-      "Vishnu's spinning disc of divine protection stands for the upholding of dharma — cosmic order, righteousness, and the unwavering defence of truth.",
+      "Represents divine protection, dharma, and the power to remove negativity and ignorance. It symbolizes time ,motion, and the eternal cycle of life.",
     hotspot: { x: 68, y: 42 },
     icon: Shield,
     image: "/sudarshan.png",

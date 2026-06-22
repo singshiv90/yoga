@@ -150,6 +150,14 @@ export const services: Service[] = [
     image:
       "https://images.unsplash.com/photo-1512621776951-a57141f2eefd?auto=format&fit=crop&w=800&q=80",
   },
+  {
+    title: "Offline Yoga Classes",
+    description:
+      "In-person sessions at our studio — experience hands-on adjustments, real-time feedback, and the energy of practicing together in a dedicated space.",
+    icon: Flower2,
+    image:
+      "https://images.unsplash.com/photo-1588286840104-8957b019727f?auto=format&fit=crop&w=800&q=80",
+  },
 ];
 
 // ---------------------------------------------------------------------------
@@ -205,7 +213,7 @@ export const benefits: Benefit[] = [
 export const instagramPosts: { image: string; alt: string }[] = [
   {
     image:
-      "https://images.unsplash.com/photo-1575052814086-f385e2e2ad1b?auto=format&fit=crop&w=600&q=80",
+      "/BDF5EDB7-1A54-45CE-A7A4-636DA47FFF7D.png",
     alt: "Morning sun salutation on the beach",
   },
   {
@@ -370,7 +378,7 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     image:
-      "https://images.unsplash.com/photo-1518609878373-06d740f60d8b?auto=format&fit=crop&w=800&q=80",
+      "/meditation.jpg",
     category: "Meditation",
     alt: "Peaceful meditation by the lake",
     span: "normal",
@@ -391,10 +399,45 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     image:
-      "https://images.unsplash.com/photo-1573384666290-3f0d80a48f73?auto=format&fit=crop&w=800&q=80",
+      "/54DF46B1-BE24-4AD6-997B-96CF1C96E800.png",
     category: "Yoga Practice",
     alt: "Backbend stretch in studio",
-    span: "normal",
+    span: "tall",
+  },
+  {
+    image:
+      "/C6CA344F-7149-436E-987D-DFFC85E18547.png",
+    category: "Yoga Practice",
+    alt: "Backbend stretch in studio",
+    span: "tall",
+  },
+  {
+    image:
+      "/D9138C47-3C7D-4BCD-B649-BEB8707E849F.png",
+    category: "Yoga Practice",
+    alt: "Backbend stretch in studio",
+    span: "tall",
+  },
+  {
+    image:
+      "/4AB17929-87E7-45B7-AC9E-3BAA922D87D9.png",
+    category: "Yoga Practice",
+    alt: "Backbend stretch in studio",
+    span: "tall",
+  },
+  {
+    image:
+      "/14263693-3AA4-404A-8054-FEC97F6731FC.png",
+    category: "Yoga Practice",
+    alt: "Backbend stretch in studio",
+    span: "tall",
+  },
+  {
+    image:
+      "/2F836718-6247-42E1-955E-2AEFC652210F.png",
+    category: "Yoga Practice",
+    alt: "Backbend stretch in studio",
+    span: "tall",
   },
   {
     image:
@@ -405,10 +448,10 @@ export const galleryItems: GalleryItem[] = [
   },
   {
     image:
-      "https://images.unsplash.com/photo-1597452485677-d661670d9640?auto=format&fit=crop&w=800&q=80",
+      "/1f9d7056-a68b-4842-8774-aa273c4a9c8a.jpg",
     category: "Meditation",
     alt: "Lotus pose with incense",
-    span: "normal",
+    span: "tall",
   },
   {
     image:

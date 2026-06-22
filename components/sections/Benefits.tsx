@@ -28,7 +28,7 @@ export function Benefits() {
             className="relative order-last aspect-square overflow-hidden rounded-[2rem] shadow-luxe lg:order-first"
           >
             <Image
-              src="https://images.unsplash.com/photo-1599901860904-17e6ed7083a0?auto=format&fit=crop&w=900&q=80"
+              src="/meditation.jpg"
               alt="Yoga practitioner in a calm, balanced pose"
               fill
               loading="lazy"

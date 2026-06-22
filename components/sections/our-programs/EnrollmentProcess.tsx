@@ -1,6 +1,6 @@
 "use client";
 
-import { enrollmentSteps } from "@/lib/online-program-data";
+import { enrollmentSteps } from "@/lib/programs-data";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { StaggerGroup } from "@/components/ui/Reveal";
 

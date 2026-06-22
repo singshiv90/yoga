@@ -9,7 +9,9 @@
       "Bash(cd /home/singshiv90/projects/shiva && npx next build 2>&1 | tail -40)",
       "Bash(cd /home/singshiv90/projects/shiva && npx next build 2>&1 | tail -20)",
       "Bash(cd /home/singshiv90/projects/shiva && npx next build 2>&1 | tail -15)",
-      "Bash(cd /home/singshiv90/projects/shiva && npx next build 2>&1 | tail -10)"
+      "Bash(cd /home/singshiv90/projects/shiva && npx next build 2>&1 | tail -10)",
+      "Bash(cd /home/singshiv90/projects/shiva && time npx next build 2>&1 | tail -20)",
+      "Bash(ls /home/singshiv90/projects/shiva/public/_*.html 2>/dev/null; ls /home/singshiv90/projects/shiva/public/functions/ 2>/dev/null; ls /home/singshiv90/projects/shiva/public/_headers /home/singshiv90/projects/shiva/public/_redirects 2>/dev/null)"
     ]
   }
 }

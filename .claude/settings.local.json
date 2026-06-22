@@ -15,7 +15,11 @@
       "Bash(ls /home/singshiv90/projects/shiva/public/*.png /home/singshiv90/projects/shiva/public/*.jpg /home/singshiv90/projects/shiva/public/*.svg 2>/dev/null)",
       "Bash(cd /home/singshiv90/projects/shiva/components/sections/online-program && \\\\\nsed -i \\\\\n  -e 's/text-gradient-teal/text-gradient-gold/g' \\\\\n  -e 's/kicker-teal/kicker/g' \\\\\n  -e 's/text-teal-light/text-gold-light/g' \\\\\n  -e 's/bg-teal-light/bg-gold-light/g' \\\\\n  -e 's/hover:bg-teal-light/hover:bg-gold-light/g' \\\\\n  -e 's/hover:text-teal-light/hover:text-gold-light/g' \\\\\n  -e 's/hover:text-teal/hover:text-gold/g' \\\\\n  -e 's/shadow-glow-teal/shadow-glow/g' \\\\\n  -e 's/bg-radial-fade-teal/bg-radial-fade/g' \\\\\n  -e 's/border-teal\\\\/10/border-gold\\\\/10/g' \\\\\n  -e 's/border-teal\\\\/30/border-gold\\\\/30/g' \\\\\n  -e 's/border-teal /border-gold /g' \\\\\n  -e 's/focus-visible:ring-teal/focus-visible:ring-gold/g' \\\\\n  -e 's/decoration-teal\\\\/40/decoration-gold\\\\/40/g' \\\\\n  -e 's/decoration-teal\\\\/80/decoration-gold\\\\/80/g' \\\\\n  -e 's/bg-teal\\\\/12/bg-gold\\\\/12/g' \\\\\n  -e 's/bg-teal\\\\/10/bg-gold\\\\/10/g' \\\\\n  -e 's/bg-teal\\\\/5/bg-gold\\\\/5/g' \\\\\n  -e 's/bg-teal\\\\/20/bg-gold\\\\/20/g' \\\\\n  -e 's/btn-teal-secondary/btn-secondary/g' \\\\\n  -e 's/btn-teal/btn-primary/g' \\\\\n  -e 's/variant=\"teal\"/variant=\"gold\"/g' \\\\\n  -e 's/accentColor=\"teal\"/accentColor=\"gold\"/g' \\\\\n  Hero.tsx WhyJoin.tsx ClassSchedule.tsx EnrollmentProcess.tsx FreeDemo.tsx FinalCTA.tsx Pricing.tsx ProgramTrust.tsx)",
       "Bash(grep -n \"text-teal\\\\|bg-teal\\\\b\" /home/singshiv90/projects/shiva/components/sections/online-program/*.tsx)",
-      "Bash(grep -n \"bg-teal\\\\b\" /home/singshiv90/projects/shiva/components/sections/online-program/*.tsx)"
+      "Bash(grep -n \"bg-teal\\\\b\" /home/singshiv90/projects/shiva/components/sections/online-program/*.tsx)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/our-programs)",
+      "Bash(curl -s -o /dev/null -w \"%{http_code}\" http://localhost:3000/online-program)",
+      "Bash(npx next build 2>&1 | tail -30)",
+      "Bash(npx next build 2>&1 | tail -10)"
     ]
   }
 }

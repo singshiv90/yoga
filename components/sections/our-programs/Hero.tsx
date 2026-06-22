@@ -3,7 +3,7 @@
 import Image from "next/image";
 import { motion } from "framer-motion";
 import { ArrowRight, MessageCircle } from "lucide-react";
-import { onlineProgramWhatsappLink } from "@/lib/config";
+import { programsWhatsappLink } from "@/lib/config";
 import { MagneticButton } from "@/components/ui/MagneticButton";
 
 const ease = [0.22, 1, 0.36, 1] as const;
@@ -37,7 +37,7 @@ export function Hero() {
             className="kicker text-gold-light"
           >
             <span className="h-px w-6 bg-gold-light" />
-            Online Yoga Program
+            Our Programs
           </motion.span>
 
           <motion.h1
@@ -56,7 +56,7 @@ export function Hero() {
             transition={{ duration: 0.9, ease, delay: 0.25 }}
             className="mt-6 max-w-xl text-lg leading-relaxed text-white/85"
           >
-            Join live, interactive yoga classes from anywhere in the world.
+            Join live, interactive yoga classes — online from anywhere or in person at our studio.
             Expert guidance in Yoga, Pranayama &amp; Meditation — tailored
             for every level, every schedule.
           </motion.p>
@@ -73,7 +73,7 @@ export function Hero() {
             </MagneticButton>
             <MagneticButton
               as="a"
-              href={onlineProgramWhatsappLink()}
+              href={programsWhatsappLink()}
               target="_blank"
               rel="noopener noreferrer"
               className="btn-whatsapp"

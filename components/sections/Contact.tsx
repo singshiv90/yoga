@@ -94,7 +94,7 @@ export function Contact() {
                       required
                     />
                   </div>
-                  <Field name="email" label="Email" type="email" />
+                  <Field name="email" label="Email" type="email" required />
                   <div>
                     <label
                       htmlFor="goal"

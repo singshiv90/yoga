@@ -59,7 +59,7 @@ export function Hero() {
             className="mt-6 max-w-xl text-lg leading-relaxed text-white/85"
           >
             Experience strength, flexibility, mindfulness, and peace through
-            personalized yoga practices — online, for every body
+            personalized yoga practices — online & offline, for every body
             and every schedule.
           </motion.p>
 

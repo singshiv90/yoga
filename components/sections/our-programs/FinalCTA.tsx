@@ -3,8 +3,8 @@
 import Image from "next/image";
 import { ArrowRight, MessageCircle, Phone } from "lucide-react";
 import {
-  onlineProgramWhatsappLink,
-  onlineProgramContact,
+  programsWhatsappLink,
+  programsContact,
 } from "@/lib/config";
 import { Reveal } from "@/components/ui/Reveal";
 
@@ -49,8 +49,8 @@ export function FinalCTA() {
         <Reveal direction="up" delay={0.3}>
           <div className="mt-10 flex flex-col justify-center gap-4 sm:flex-row">
             <a
-              href={onlineProgramWhatsappLink(
-                "Hi! I'd like to book a free demo class for the Online Yoga Program.",
+              href={programsWhatsappLink(
+                "Hi! I'd like to book a free demo class for the Yoga Program.",
               )}
               target="_blank"
               rel="noopener noreferrer"
@@ -70,11 +70,11 @@ export function FinalCTA() {
         <Reveal direction="none" delay={0.5}>
           <div className="mt-8 flex flex-col items-center justify-center gap-3 text-sm text-white/70 sm:flex-row sm:gap-6">
             <a
-              href={onlineProgramContact.phone1Href}
+              href={programsContact.phone1Href}
               className="inline-flex items-center gap-1.5 transition-colors hover:text-gold-light"
             >
               <Phone className="h-4 w-4" aria-hidden />
-              {onlineProgramContact.phone1Display}
+              {programsContact.phone1Display}
             </a>
           </div>
         </Reveal>

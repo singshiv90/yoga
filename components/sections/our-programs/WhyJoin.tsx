@@ -1,6 +1,6 @@
 "use client";
 
-import { onlineProgramBenefits } from "@/lib/online-program-data";
+import { programBenefits } from "@/lib/programs-data";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { StaggerGroup } from "@/components/ui/Reveal";
 import { SpotlightCard } from "@/components/ui/SpotlightCard";
@@ -18,12 +18,12 @@ export function WhyJoin() {
               <span className="text-gradient-gold">Complete Practice</span>
             </>
           }
-          subtitle="Our online program is designed to fit your lifestyle while delivering real, lasting results."
+          subtitle="Our programs are designed to fit your lifestyle while delivering real, lasting results — online or in person."
           ornament
         />
 
         <StaggerGroup className="mt-14 grid gap-5 sm:grid-cols-2 lg:grid-cols-3">
-          {onlineProgramBenefits.map((benefit) => {
+          {programBenefits.map((benefit) => {
             const Icon = benefit.icon;
             return (
               <SpotlightCard key={benefit.title}>

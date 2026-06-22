@@ -2,7 +2,7 @@
 
 import { motion } from "framer-motion";
 import { Gift, ArrowRight } from "lucide-react";
-import { onlineProgramWhatsappLink } from "@/lib/config";
+import { programsWhatsappLink } from "@/lib/config";
 import { Reveal } from "@/components/ui/Reveal";
 
 export function FreeDemo() {
@@ -33,8 +33,8 @@ export function FreeDemo() {
             </p>
 
             <a
-              href={onlineProgramWhatsappLink(
-                "Hi! I'd like to book a free demo class for the Online Yoga Program.",
+              href={programsWhatsappLink(
+                "Hi! I'd like to book a free demo class for the Yoga Program.",
               )}
               target="_blank"
               rel="noopener noreferrer"

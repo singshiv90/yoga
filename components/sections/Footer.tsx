@@ -64,7 +64,7 @@ export function Footer() {
             </Link>
             <p className="mt-4 text-center text-sm leading-relaxed text-muted">
               {site.tagline}. Personalized yoga, meditation &amp; pranayama
-              coaching — online, for every body.
+              coaching — online & offline, for every body.
             </p>
             <div className="mt-5 flex gap-3">
               <a

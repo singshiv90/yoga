@@ -1,6 +1,6 @@
 "use client";
 
-import { programTrustPoints } from "@/lib/online-program-data";
+import { programTrustPoints } from "@/lib/programs-data";
 import { StaggerGroup } from "@/components/ui/Reveal";
 
 export function ProgramTrust() {

@@ -25,9 +25,12 @@ import {
   Users,
   Activity,
   TrendingUp,
+  MapPin,
+  Backpack,
+  HandHeart,
 } from "lucide-react";
-import { pricingPlans } from "@/lib/online-program-data";
-import { onlineProgramWhatsappLink } from "@/lib/config";
+import { pricingPlans } from "@/lib/programs-data";
+import { programsWhatsappLink } from "@/lib/config";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { StaggerGroup } from "@/components/ui/Reveal";
 import { PolicyModal, type PolicyItem } from "@/components/ui/PolicyModal";
@@ -54,7 +57,7 @@ const paymentTermsItems: PolicyItem[] = [
   },
   {
     icon: <VideoOff className="h-4 w-4" />,
-    text: "Recorded sessions are provided for personal learning purposes only and must not be shared, distributed, or sold.",
+    text: "For online classes, recorded sessions are provided for personal learning purposes only and must not be shared, distributed, or sold.",
   },
   {
     icon: <AlertTriangle className="h-4 w-4" />,
@@ -73,15 +76,15 @@ const paymentTermsItems: PolicyItem[] = [
 const sessionGuidelinesItems: PolicyItem[] = [
   {
     icon: <Clock className="h-4 w-4" />,
-    text: "Please join the session 5 minutes before the scheduled class time.",
+    text: "For online classes, please join the session 5 minutes before the scheduled time.",
   },
   {
     icon: <Wifi className="h-4 w-4" />,
-    text: "Ensure a stable internet connection for an uninterrupted experience.",
+    text: "For online classes, ensure a stable internet connection for an uninterrupted experience.",
   },
   {
     icon: <Home className="h-4 w-4" />,
-    text: "Practice in a quiet, clean, and distraction-free environment.",
+    text: "For online classes, practice in a quiet, clean, and distraction-free environment.",
   },
   {
     icon: <Shirt className="h-4 w-4" />,
@@ -89,7 +92,7 @@ const sessionGuidelinesItems: PolicyItem[] = [
   },
   {
     icon: <Camera className="h-4 w-4" />,
-    text: "Keep your camera on whenever possible for better posture guidance and personalized corrections.",
+    text: "For online classes, keep your camera on whenever possible for better posture guidance and corrections.",
   },
   {
     icon: <BookOpen className="h-4 w-4" />,
@@ -118,6 +121,18 @@ const sessionGuidelinesItems: PolicyItem[] = [
   {
     icon: <TrendingUp className="h-4 w-4" />,
     text: "Consistency and regular attendance will help you achieve the best results.",
+  },
+  {
+    icon: <MapPin className="h-4 w-4" />,
+    text: "For in-studio classes, please arrive at least 10 minutes before the scheduled time.",
+  },
+  {
+    icon: <Backpack className="h-4 w-4" />,
+    text: "Bring your own yoga mat and water bottle for in-studio sessions.",
+  },
+  {
+    icon: <HandHeart className="h-4 w-4" />,
+    text: "Maintain studio etiquette — keep phones on silent, avoid loud conversations, and keep the space clean.",
   },
 ];
 
@@ -196,8 +211,8 @@ export function Pricing() {
                 </ul>
 
                 <a
-                  href={onlineProgramWhatsappLink(
-                    `Hi! I'd like to enroll in the ${plan.name} plan for the Online Yoga Program.`,
+                  href={programsWhatsappLink(
+                    `Hi! I'd like to enroll in the ${plan.name} plan for the Yoga Program.`,
                   )}
                   target="_blank"
                   rel="noopener noreferrer"
@@ -244,7 +259,7 @@ export function Pricing() {
                 aria-hidden
               />
               <span className="underline decoration-dotted underline-offset-4 decoration-gold/40 transition-all duration-200 group-hover:decoration-gold/80">
-                Online Session Guidelines
+                Session Guidelines
               </span>
             </button>
           </div>
@@ -264,7 +279,7 @@ export function Pricing() {
       <PolicyModal
         isOpen={openModal === "guidelines"}
         onClose={() => setOpenModal(null)}
-        title="Online Session Guidelines"
+        title="Session Guidelines"
         accentColor="gold"
         headerEmoji="🪷"
         items={sessionGuidelinesItems}

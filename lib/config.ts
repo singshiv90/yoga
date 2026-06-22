@@ -28,20 +28,20 @@ export function whatsappLink(message: string = WHATSAPP_DEFAULT_MESSAGE) {
   return `https://wa.me/${WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
 
-// --- Online Program dedicated contact ---
-export const ONLINE_PROGRAM_WHATSAPP_NUMBER = "917058155564";
+// --- Programs dedicated contact ---
+export const PROGRAMS_WHATSAPP_NUMBER = "917058155564";
 
-export const ONLINE_PROGRAM_WHATSAPP_MESSAGE =
-  "Hi! I'm interested in the Online Yoga Program. I'd like to know more about the classes and schedule.";
+export const PROGRAMS_WHATSAPP_MESSAGE =
+  "Hi! I'm interested in the Yoga Programs. I'd like to know more about the classes and schedule.";
 
-/** Build a wa.me deep link for the online program. */
-export function onlineProgramWhatsappLink(
-  message: string = ONLINE_PROGRAM_WHATSAPP_MESSAGE,
+/** Build a wa.me deep link for programs. */
+export function programsWhatsappLink(
+  message: string = PROGRAMS_WHATSAPP_MESSAGE,
 ) {
-  return `https://wa.me/${ONLINE_PROGRAM_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
+  return `https://wa.me/${PROGRAMS_WHATSAPP_NUMBER}?text=${encodeURIComponent(message)}`;
 }
 
-export const onlineProgramContact = {
+export const programsContact = {
   phone1Display: "+91 7058155564",
   phone1Href: "tel:+917058155564",
   phone2Display: "+91 7058155564",
@@ -72,6 +72,6 @@ export const navLinks = [
   { label: "Testimonials", href: "#testimonials" },
   { label: "Blog", href: "#blog" },
   { label: "FAQ", href: "#faq" },
-  { label: "Online Program", href: "/online-program" },
+  { label: "Our Programs", href: "/our-programs" },
   { label: "Contact", href: "#contact" },
 ];
