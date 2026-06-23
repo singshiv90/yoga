@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { ImageWithLoader as Image } from "@/components/ui/ImageWithLoader";
 import { ArrowUpRight } from "lucide-react";
 import { services } from "@/lib/data";
 import { SectionHeading } from "@/components/ui/SectionHeading";

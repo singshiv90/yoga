@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { ImageWithLoader as Image } from "@/components/ui/ImageWithLoader";
 import { CalendarHeart, MessageCircle } from "lucide-react";
 import { whatsappLink } from "@/lib/config";
 import { Reveal } from "@/components/ui/Reveal";

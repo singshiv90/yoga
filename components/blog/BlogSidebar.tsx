@@ -1,4 +1,4 @@
-import Image from "next/image";
+import { ImageWithLoader as Image } from "@/components/ui/ImageWithLoader";
 import Link from "next/link";
 import { Calendar } from "lucide-react";
 import { blogPosts } from "@/lib/blog-data";

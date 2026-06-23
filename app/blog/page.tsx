@@ -1,5 +1,5 @@
 import type { Metadata } from "next";
-import Image from "next/image";
+import { ImageWithLoader as Image } from "@/components/ui/ImageWithLoader";
 import Link from "next/link";
 import { ArrowLeft } from "lucide-react";
 import { site } from "@/lib/config";

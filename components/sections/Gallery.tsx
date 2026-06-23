@@ -1,7 +1,7 @@
 "use client";
 
 import { useRef, useState } from "react";
-import Image from "next/image";
+import { ImageWithLoader as Image } from "@/components/ui/ImageWithLoader";
 import { AnimatePresence, motion, useMotionValue, useTransform } from "framer-motion";
 import { galleryCategories, galleryItems } from "@/lib/data";
 import { SectionHeading } from "@/components/ui/SectionHeading";

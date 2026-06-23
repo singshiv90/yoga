@@ -2,7 +2,7 @@
 
 import { usePathname } from "next/navigation";
 import Link from "next/link";
-import Image from "next/image";
+import { ImageWithLoader as Image } from "@/components/ui/ImageWithLoader";
 import { Facebook, Instagram, Mail, MessageCircle, Phone, Youtube } from "lucide-react";
 import { contact, navLinks, site, social, whatsappLink } from "@/lib/config";
 import { services } from "@/lib/data";

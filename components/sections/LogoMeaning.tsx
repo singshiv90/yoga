@@ -1,7 +1,7 @@
 "use client";
 
 import React, { useRef, useState, useCallback, useEffect } from "react";
-import Image from "next/image";
+import { ImageWithLoader as Image } from "@/components/ui/ImageWithLoader";
 import { useScroll, useTransform, useMotionValueEvent } from "framer-motion";
 import { SectionHeading } from "@/components/ui/SectionHeading";
 import { logoSymbols } from "@/lib/logo-symbols-data";

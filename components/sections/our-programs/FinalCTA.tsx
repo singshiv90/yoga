@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { ImageWithLoader as Image } from "@/components/ui/ImageWithLoader";
 import { ArrowRight, MessageCircle, Phone } from "lucide-react";
 import {
   programsWhatsappLink,

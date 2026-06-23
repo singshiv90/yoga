@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { ImageWithLoader as Image } from "@/components/ui/ImageWithLoader";
 import { Play, Youtube } from "lucide-react";
 import { videos } from "@/lib/data";
 import { SectionHeading } from "@/components/ui/SectionHeading";

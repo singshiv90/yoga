@@ -1,6 +1,6 @@
 "use client";
 
-import Image from "next/image";
+import { ImageWithLoader as Image } from "@/components/ui/ImageWithLoader";
 import { BadgeCheck, Sparkles } from "lucide-react";
 import { instructor } from "@/lib/data";
 import { Reveal } from "@/components/ui/Reveal";
