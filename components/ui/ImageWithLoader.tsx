@@ -4,13 +4,15 @@ import Image, { type ImageProps } from "next/image";
 import { useCallback, useEffect, useRef, useState } from "react";
 import { cn } from "@/lib/utils";
 
+const shimmerStyle: React.CSSProperties = {
+  backgroundImage:
+    "linear-gradient(90deg, rgba(201,162,75,0.06) 25%, rgba(201,162,75,0.18) 50%, rgba(201,162,75,0.06) 75%)",
+  backgroundSize: "200% 100%",
+};
+
 /**
- * Drop-in replacement for next/image that shows a subtle shimmer
- * placeholder while the image is loading, then fades it in.
- *
- * Handles the edge-case where the browser finishes loading the image
- * before React hydrates (static export) by checking `img.complete`
- * on mount.
+ * Drop-in replacement for next/image that shows a visible shimmer
+ * skeleton while the image is loading, then fades it in.
  */
 export function ImageWithLoader({
   className,
@@ -20,7 +22,6 @@ export function ImageWithLoader({
   const [loaded, setLoaded] = useState(false);
   const imgRef = useRef<HTMLImageElement | null>(null);
 
-  // Catch images that loaded before hydration (SSG / static export)
   useEffect(() => {
     if (imgRef.current?.complete && imgRef.current.naturalWidth > 0) {
       setLoaded(true);
@@ -42,9 +43,12 @@ export function ImageWithLoader({
   const shimmer = (
     <span
       className={cn(
-        "absolute inset-0 z-[1] rounded-[inherit] bg-white/[0.06] transition-opacity duration-500",
-        loaded ? "opacity-0 pointer-events-none" : "animate-pulse opacity-100",
+        "absolute inset-0 z-[1] rounded-[inherit] transition-opacity duration-500",
+        loaded
+          ? "opacity-0 pointer-events-none"
+          : "opacity-100 animate-shimmer",
       )}
+      style={shimmerStyle}
       aria-hidden="true"
     />
   );
@@ -62,7 +66,6 @@ export function ImageWithLoader({
     />
   );
 
-  // fill images: parent already has position:relative
   if (props.fill) {
     return (
       <>
@@ -72,7 +75,6 @@ export function ImageWithLoader({
     );
   }
 
-  // sized images: wrap in a relative container
   return (
     <span className="relative inline-block">
       {shimmer}
