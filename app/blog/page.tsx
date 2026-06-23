@@ -22,26 +22,35 @@ export default function BlogListingPage() {
       <Navbar />
       <main>
         {/* Hero banner */}
-        <div className="relative flex h-64 items-end overflow-hidden sm:h-80">
-          <Image
-            src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1600&q=80"
-            alt="Yoga journal"
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/40 to-transparent" />
-          <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-ink/50 to-transparent" />
-          <div className="container-luxe relative pb-8 sm:pb-12">
-            <p className="text-xs font-semibold uppercase tracking-widest text-gold-light">
-              Our Journal
-            </p>
-            <h1 className="mt-1 font-serif text-3xl font-semibold text-white sm:text-4xl">
-              Yoga &amp; Wellness Articles
-            </h1>
+        <section className="relative flex min-h-[100svh] items-center overflow-hidden">
+          <div className="absolute inset-0 -z-10">
+            <Image
+              src="https://images.unsplash.com/photo-1506126613408-eca07ce68773?auto=format&fit=crop&w=1920&q=80"
+              alt="Yoga journal"
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/60 to-ink/20" />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-ink/30" />
           </div>
-        </div>
+
+          <div className="container-luxe relative w-full pt-28 pb-20 text-white">
+            <div className="max-w-3xl">
+              <p className="text-xs font-semibold uppercase tracking-widest text-gold-light">
+                Our Journal
+              </p>
+              <h1 className="mt-6 font-serif text-4xl font-semibold leading-[1.08] text-white sm:text-6xl lg:text-7xl">
+                Yoga &amp; Wellness{" "}
+                <span className="text-gradient-gold">Articles</span>
+              </h1>
+              <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/85">
+                Read expert insights, wellness tips, yoga guidance, and practical techniques to support your journey toward a healthier and more balanced life.
+              </p>
+            </div>
+          </div>
+        </section>
 
         {/* Article grid */}
         <section className="section-pad">

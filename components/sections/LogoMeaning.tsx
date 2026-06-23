@@ -144,13 +144,13 @@ const TextPanel = React.memo(function TextPanel({
             aria-hidden={!isActive}
           >
             {/* Symbol image */}
-            <div className="mb-4 flex h-14 w-14 items-center justify-center overflow-hidden rounded-full border border-gold/30 bg-ink shadow-[0_0_12px_rgba(201,162,75,0.2)]">
+            <div className="relative mb-4 h-14 w-14 overflow-hidden rounded-full border border-gold/30 bg-ink shadow-[0_0_12px_rgba(201,162,75,0.2)]">
               <Image
                 src={symbol.image}
                 alt={symbol.title}
-                width={112}
-                height={112}
-                className="h-[80%] w-[80%] object-contain"
+                fill
+                sizes="56px"
+                className="object-contain p-2.5"
               />
             </div>
 

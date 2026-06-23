@@ -104,21 +104,22 @@ export default async function BlogPostPage({
       <Navbar />
       <main>
         {/* Hero image */}
-        <div className="relative h-[400px] w-full overflow-hidden">
-          <Image
-            src={post.image}
-            alt={post.title}
-            fill
-            priority
-            sizes="100vw"
-            className="object-cover"
-          />
-          <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-ink/40 to-transparent" />
-          {/* Top overlay so fixed navbar + logo match other pages */}
-          <div className="absolute inset-x-0 top-0 h-28 bg-gradient-to-b from-ink/60 to-transparent" />
+        <section className="relative flex min-h-[100svh] items-center overflow-hidden">
+          <div className="absolute inset-0 -z-10">
+            <Image
+              src={post.image}
+              alt={post.title}
+              fill
+              priority
+              sizes="100vw"
+              className="object-cover"
+            />
+            <div className="absolute inset-0 bg-gradient-to-r from-ink/85 via-ink/60 to-ink/20" />
+            <div className="absolute inset-0 bg-gradient-to-t from-ink/80 via-transparent to-ink/30" />
+          </div>
 
-          <div className="absolute bottom-0 left-0 right-0 p-6 sm:p-10">
-            <div className="container-luxe">
+          <div className="container-luxe relative w-full pt-28 pb-20 text-white">
+            <div className="max-w-3xl">
               <div className="flex flex-wrap items-center gap-3 text-sm text-white/80">
                 <span className="inline-flex items-center gap-1.5 rounded-full bg-gold/90 px-3 py-1 text-xs font-semibold uppercase tracking-wider text-white">
                   <Icon className="h-3.5 w-3.5" aria-hidden />
@@ -133,19 +134,21 @@ export default async function BlogPostPage({
                   {post.readTime}
                 </span>
               </div>
+              <h1 className="mt-6 font-serif text-4xl font-semibold leading-[1.08] sm:text-6xl lg:text-7xl">
+                {post.title}
+              </h1>
+              <p className="mt-6 max-w-xl text-lg leading-relaxed text-white/85">
+                {post.excerpt}
+              </p>
             </div>
           </div>
-        </div>
+        </section>
 
         {/* Article + Sidebar grid */}
         <div className="section-pad">
           <div className="container-luxe">
             <article className="mx-auto max-w-3xl">
-              <h1 className="font-serif text-3xl font-semibold leading-tight sm:text-4xl lg:text-5xl">
-                {post.title}
-              </h1>
-
-              <div className="mt-8 space-y-5">
+              <div className="space-y-5">
                 {post.content.map((paragraph, i) => (
                   <p
                     key={i}
