@@ -21,7 +21,10 @@
       "Bash(npx next build 2>&1 | tail -30)",
       "Bash(npx next build 2>&1 | tail -10)",
       "Bash(npx next build 2>&1 | tail -15)",
-      "Bash(npx next build 2>&1 | tail -20)"
+      "Bash(npx next build 2>&1 | tail -20)",
+      "Bash(which sharp-cli pngquant optipng jpegoptim cwebp 2>&1; npm ls sharp 2>/dev/null | head -3)",
+      "Bash(node scripts/compress-images.mjs)",
+      "Bash(npx next build 2>&1 | tail -5)"
     ]
   }
 }
