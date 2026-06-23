@@ -25,7 +25,9 @@
       "Bash(which sharp-cli pngquant optipng jpegoptim cwebp 2>&1; npm ls sharp 2>/dev/null | head -3)",
       "Bash(node scripts/compress-images.mjs)",
       "Bash(npx next build 2>&1 | tail -5)",
-      "Bash(find /home/singshiv90/projects/shiva/out/_next/static -name \"*.css\" -exec grep -l \"shimmer\" {} \\\\;)"
+      "Bash(find /home/singshiv90/projects/shiva/out/_next/static -name \"*.css\" -exec grep -l \"shimmer\" {} \\\\;)",
+      "Bash(git add components/ui/ImageWithLoader.tsx)",
+      "Bash(git add -u)"
     ]
   }
 }
